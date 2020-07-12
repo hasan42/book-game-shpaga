@@ -1,8 +1,14 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter, Link } from "react-router-dom";
+import {Provider} from "mobx-react";
+import gameStore from "./stores/gameStore";
 import Layout from "./ui/Layout/Layout";
 import IntroPage from "./pages/IntroPage/IntroPage";
 import GamePage from "./pages/GamePage/GamePage";
+
+const stores = {
+    gameStore
+};
 
 class App extends Component {
   render() {
@@ -14,7 +20,15 @@ class App extends Component {
       </Switch>
     );
 
-    return <Layout>{routes}</Layout>;
+    return (
+    <Provider {...stores}>
+      <Layout>
+        <div>
+          <Link to="/">Home</Link> <Link to="/game/1">Game</Link>
+        </div>
+        {routes}
+      </Layout>
+    </Provider>);
   }
 }
 

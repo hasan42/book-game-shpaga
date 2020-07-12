@@ -1,29 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Provider} from "mobx-react";
+// import {Provider} from "mobx-react";
 import "./index.css";
 import App from "./App";
-import mainStore from "./stores/mainStore";
-import optionsStore from "./stores/optionsStore";
+// import gameStore from "./stores/gameStore";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-const stores = {
-    mainStore,
-    optionsStore,
-    ButtonStore : mainStore.ButtonStore,    
-    FioStore : mainStore.FioStore,
-    EmailStore : mainStore.EmailStore
-};
+// const stores = {
+//     gameStore
+// };
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider {...stores}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
