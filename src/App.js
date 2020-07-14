@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter, Link } from "react-router-dom";
-import {Provider} from "mobx-react";
+import { Provider } from "mobx-react";
 import gameStore from "./stores/gameStore";
 import Layout from "./ui/Layout/Layout";
 import IntroPage from "./pages/IntroPage/IntroPage";
 import GamePage from "./pages/GamePage/GamePage";
 
 const stores = {
-    gameStore
+  gameStore,
 };
 
 class App extends Component {
@@ -21,14 +21,13 @@ class App extends Component {
     );
 
     return (
-    <Provider {...stores}>
       <Layout>
         <div>
           <Link to="/">Home</Link> <Link to="/game/1">Game</Link>
         </div>
         {routes}
       </Layout>
-    </Provider>);
+    );
   }
 }
 

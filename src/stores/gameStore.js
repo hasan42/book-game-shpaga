@@ -1,14 +1,27 @@
-import {observable, computed, autorun, reaction, get, action, decorate} from 'mobx';
+import {
+  observable,
+  computed,
+  autorun,
+  reaction,
+  get,
+  action,
+  decorate,
+} from "mobx";
+import axios from "axios";
 
 class GameStore {
-  // @observable 
+  // @observable
   show;
+  introText = "";
 
   constructor() {
     this.show = false;
   }
 
-  // @computed 
+  // @computed
+  get showIntroText() {
+    return this.introText;
+  }
   get isShowIntro() {
     return this.show;
   }
@@ -20,6 +33,7 @@ class GameStore {
 
   // @action('show intro')
   openIntro() {
+    console.log(this);
     this.show = true;
   }
 
@@ -29,17 +43,43 @@ class GameStore {
   }
 }
 decorate(GameStore, {
-    show: observable,
-    isShowIntro: computed,
-    toggleIntro: action,
-    openIntro: action,
-    closeIntro: action,
-})
+  show: observable,
+  introText: observable,
+  isShowIntro: computed,
+  toggleIntro: action,
+  openIntro: action,
+  closeIntro: action,
+});
 
 const gameStore = new GameStore();
 
 autorun(() => {
-  console.log(gameStore.show);
+  axios
+    .get(process.env.PUBLIC_URL + "shpaga.json", {
+      dataType: "jsonp",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+    // .then((response) => {
+    //   console.log(response.data);
+    //   return JSON.parse(response);
+    // })
+    .then((response) => {
+      if (response.data.intro) {
+        gameStore.introText = response.data.intro;
+        console.log(gameStore.introText);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  setTimeout(() => {
+    gameStore.openIntro();
+    gameStore.introText = "response.data.intro";
+  }, 3000);
 });
 
 export default gameStore;
