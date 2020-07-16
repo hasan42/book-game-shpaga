@@ -79,6 +79,19 @@ class GameStore {
     }
   }
 
+  // проверка удачи
+  checkYouLuck() {
+    return this.turnDice() % 2 === 0;
+  }
+
+  // расчет урона
+  calculateFightHit(enemyAg) {
+    const playerHit = this.turnDice() * 2 + this.playerAgility;
+    const enemyHit = this.turnDice() * 2 + enemyAg;
+
+    return playerHit === enemyHit ? 0 : playerHit > enemyHit ? 2 : -2;
+  }
+
   toggleIntro() {
     this.show = !this.show;
   }
