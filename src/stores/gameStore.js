@@ -10,15 +10,18 @@ import {
 import axios from "axios";
 
 class GameStore {
-  // @observable
   show;
   introText = "";
+
+  playerAgilityMax = 0; // макимальная ловкость
+  playerStrengthMax = 0; // макимальная сила
+  playerAgility = 0; // текущая ловкость
+  playerStrength = 0; // текущая сила
 
   constructor() {
     this.show = false;
   }
 
-  // @computed
   get showIntroText() {
     return this.introText;
   }
@@ -26,18 +29,65 @@ class GameStore {
     return this.show;
   }
 
-  // @action('toggle intro')
+  // кидать кубик
+  turnDice(min = 1, max = 6) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
+  }
+
+  // расчет характеристик игрока
+  calculatePlayerStat() {
+    switch (this.turnDice()) {
+      case 1:
+        this.playerAgilityMax = 12;
+        break;
+      case 2:
+        this.playerAgilityMax = 8;
+        break;
+      case 3:
+        this.playerAgilityMax = 10;
+        break;
+      case 4:
+        this.playerAgilityMax = 7;
+        break;
+      case 5:
+        this.playerAgilityMax = 9;
+        break;
+      default:
+        this.playerAgilityMax = 11;
+        break;
+    }
+    switch (this.turnDice()) {
+      case 1:
+        this.playerStrengthMax = 22;
+        break;
+      case 2:
+        this.playerStrengthMax = 18;
+        break;
+      case 3:
+        this.playerStrengthMax = 14;
+        break;
+      case 4:
+        this.playerStrengthMax = 24;
+        break;
+      case 5:
+        this.playerStrengthMax = 16;
+        break;
+      default:
+        this.playerStrengthMax = 20;
+        break;
+    }
+  }
+
   toggleIntro() {
     this.show = !this.show;
   }
 
-  // @action('show intro')
   openIntro() {
     console.log(this);
     this.show = true;
   }
 
-  // @action('hide intro')
   closeIntro() {
     this.show = false;
   }
@@ -46,6 +96,7 @@ decorate(GameStore, {
   show: observable,
   introText: observable,
   isShowIntro: computed,
+  turnDice: action,
   toggleIntro: action,
   openIntro: action,
   closeIntro: action,
@@ -62,24 +113,14 @@ autorun(() => {
         Accept: "application/json",
       },
     })
-    // .then((response) => {
-    //   console.log(response.data);
-    //   return JSON.parse(response);
-    // })
     .then((response) => {
       if (response.data.intro) {
         gameStore.introText = response.data.intro;
-        console.log(gameStore.introText);
       }
     })
     .catch((error) => {
       console.log(error);
     });
-
-  setTimeout(() => {
-    gameStore.openIntro();
-    gameStore.introText = "response.data.intro";
-  }, 3000);
 });
 
 export default gameStore;

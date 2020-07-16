@@ -21,7 +21,6 @@ import Card from "../../ui/Card/Card";
 
 const IntroPage = inject("gameStore")(
   observer(({ GameStore }) => {
-    console.log(this);
     return (
       <div>
         <Card />
