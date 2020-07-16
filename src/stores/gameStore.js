@@ -13,10 +13,31 @@ class GameStore {
   show;
   introText = "";
 
-  playerAgilityMax = 0; // макимальная ловкость
-  playerStrengthMax = 0; // макимальная сила
+  specialList = [
+    "secretSword",
+    "swordAndDagger",
+    "doublePistol",
+    "leftHand",
+    "swimming",
+  ]; // список возможных специальных сил
+  ifHonorGoesZero = 150; // если честь упала до нуля
+
+  playerAgilityMax = 0; // максимальная ловкость
+  playerStrengthMax = 0; // максимальная сила
   playerAgility = 0; // текущая ловкость
   playerStrength = 0; // текущая сила
+  playerSpecial = null; // особая сила
+  playerHonor = 0; // количество чести
+  playerGod = true; // обратиться к богу. Максимум 1 раз
+  playerMoney = 0; // количество денег
+  playerFood = 0; // количество еды. Максимально 2
+  playerInventoryMax = 5; // максимальное количество предметов в инвентаре
+  playerInventory = []; // инвентарь игрока
+  playerHorse = 1; // лошадь игрока
+  playerSword = 1; // меч игрока
+  playerDagger = 0; // кинжавл игрока
+  playerPistol = 1; // пистолет игрока
+  playerAmmo = 1; // патроны игрока
 
   constructor() {
     this.show = false;
