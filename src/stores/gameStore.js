@@ -41,6 +41,7 @@ class GameStore {
 
   constructor() {
     this.show = false;
+    this.createNewGame();
   }
 
   get showIntroText() {
