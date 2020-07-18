@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Redirect } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import Card from "../../ui/Card/Card";
@@ -11,18 +11,20 @@ const GamePage = inject("gameStore")(
     const text = gameStore.currentStepText;
     console.log(gameStore, text);
 
-    return (
+    return text ? (
       <div className="game">
-        <h1>GamePage</h1>
+        <h1>GamePage {text.id}</h1>
         <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
         <ul>
           {text.step.map((step) => (
-            <li>
+            <li key={step.to}>
               <Link to={"/game/" + step.to}>{step.text}</Link>
             </li>
           ))}
         </ul>
       </div>
+    ) : (
+      <Redirect to="/" />
     );
   })
 );
