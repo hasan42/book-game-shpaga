@@ -7,7 +7,7 @@ const Card = inject("gameStore")(
     return (
       <div>
         <div>
-          <p>Game store : {gameStore.isShowIntro ? "true" : "false"}</p>
+          <p>Game store : </p>
         </div>
       </div>
     );

@@ -13,6 +13,10 @@ class GameStore {
   show;
   introText = "";
 
+  currentStep = 0; // текущий шаг
+  listSteps = []; // список шагов
+  historySteps = []; // история шагов
+
   specialList = [
     "secretSword",
     "swordAndDagger",
@@ -49,6 +53,13 @@ class GameStore {
   }
   get isShowIntro() {
     return this.show;
+  }
+  get currentStepText() {
+    return this.listSteps.find((step) => step.id === Number(this.currentStep));
+  }
+
+  getStepById(id) {
+    this.listSteps.find((step) => step.id === id);
   }
 
   // кидать кубик
@@ -149,8 +160,15 @@ class GameStore {
   closeIntro() {
     this.show = false;
   }
+
+  setCurrentStep(newCurrentStep) {
+    this.currentStep = newCurrentStep;
+  }
 }
 decorate(GameStore, {
+  currentStep: observable,
+  listSteps: observable,
+  historySteps: observable,
   playerAgility: observable,
   playerStrength: observable,
   playerHonor: observable,
@@ -166,10 +184,12 @@ decorate(GameStore, {
   show: observable,
   introText: observable,
   isShowIntro: computed,
+  currentStepText: computed,
   turnDice: action,
   toggleIntro: action,
   openIntro: action,
   closeIntro: action,
+  setCurrentStep: action,
 });
 
 const gameStore = new GameStore();
@@ -186,6 +206,9 @@ autorun(() => {
     .then((response) => {
       if (response.data.intro) {
         gameStore.introText = response.data.intro;
+      }
+      if (response.data.game) {
+        gameStore.listSteps = response.data.game;
       }
     })
     .catch((error) => {
