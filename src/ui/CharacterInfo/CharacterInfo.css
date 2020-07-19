@@ -1,0 +1,13 @@
+.player-stat {
+}
+.player-stat ul {
+  display: flex;
+  flex-direction: row;
+}
+.player-stat ul {
+  list-style-type: none;
+  padding: 0;
+}
+.player-stat ul li {
+  margin-right: 10px;
+}

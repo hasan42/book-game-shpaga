@@ -175,6 +175,13 @@ class GameStore {
     this.show = false;
   }
 
+  // уменьшение параметра на заданную величину
+  decrease(stat, count) {
+    if (stat === "strength") {
+      this.playerStrength = this.playerStrength - count;
+    }
+  }
+
   // изменение текущего шага
   setCurrentStep(newCurrentStep) {
     if (this.currentStep !== newCurrentStep) {
@@ -219,18 +226,23 @@ decorate(GameStore, {
   playerAmmo: observable,
   show: observable,
   introText: observable,
+
   canLoadOldGame: computed,
   isShowIntro: computed,
   currentStepText: computed,
   turnDice: action,
+
   toggleIntro: action,
   openIntro: action,
   closeIntro: action,
+
   setCurrentStep: action,
   removeSavedGames: action,
   checkHaveSaveGame: action,
   saveGame: action,
   loadGame: action,
+
+  decrease: action,
 });
 
 const gameStore = new GameStore();
