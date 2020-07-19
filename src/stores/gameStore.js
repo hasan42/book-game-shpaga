@@ -134,6 +134,11 @@ class GameStore {
     }
   }
 
+  removeSavedGames() {
+    localStorage.removeItem("shpaga-game-steps");
+    this.canLoadSaveGame = false;
+  }
+
   // проверка удачи четно - повезло, нечетно - не повезло
   checkYouLuck() {
     return this.turnDice() % 2 === 0;
@@ -222,6 +227,7 @@ decorate(GameStore, {
   openIntro: action,
   closeIntro: action,
   setCurrentStep: action,
+  removeSavedGames: action,
   checkHaveSaveGame: action,
   saveGame: action,
   loadGame: action,

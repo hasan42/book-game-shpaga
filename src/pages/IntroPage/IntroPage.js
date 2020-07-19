@@ -17,7 +17,14 @@ const IntroPage = inject("gameStore")(
 
         <ul>
           <li>
-            <Link to="/game/1">Начать новую игру</Link>
+            <button
+              onClick={() => {
+                gameStore.removeSavedGames();
+                history.push(`/game/1`);
+              }}
+            >
+              Начать новую игру
+            </button>
           </li>
           {gameStore.canLoadSaveGame && (
             <li>
