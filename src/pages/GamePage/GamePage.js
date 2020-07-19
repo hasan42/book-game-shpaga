@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useParams, Link, Redirect } from "react-router-dom";
+import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import Card from "../../ui/Card/Card";
@@ -10,6 +10,8 @@ const GamePage = inject("gameStore")(
     gameStore.setCurrentStep(id);
     const text = gameStore.currentStepText;
 
+    const history = useHistory();
+
     return text ? (
       <div>
         <div>
@@ -19,11 +21,31 @@ const GamePage = inject("gameStore")(
           <h1>GamePage {text.id}</h1>
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
           <ul>
-            {text.step.map((step) => (
-              <li key={step.to}>
-                <Link to={"/game/" + step.to}>{step.text}</Link>
-              </li>
-            ))}
+            {text.step.map((step, idx) =>
+              step.type === "gameOver" ? (
+                <>
+                  <li key={idx}>
+                    <Link to={"/"}>{step.text}</Link>
+                  </li>
+                  {gameStore.canLoadSaveGame && (
+                    <li key={idx + 1}>
+                      <button
+                        onClick={() => {
+                          gameStore.loadGame();
+                          history.push(`/game/${gameStore.currentStep}`);
+                        }}
+                      >
+                        Загрузить игру
+                      </button>
+                    </li>
+                  )}
+                </>
+              ) : (
+                <li key={step.to}>
+                  <Link to={"/game/" + step.to}>{step.text}</Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
       </div>

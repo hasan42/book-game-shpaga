@@ -572,7 +572,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -728,7 +728,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -799,7 +799,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -817,7 +817,7 @@
       "step": [
         {
           "text": "уезжаете",
-          "type": 331
+          "to": 331
         }
       ]
     },
@@ -827,11 +827,11 @@
       "step": [
         {
           "text": "да",
-          "type": 613
+          "to": 613
         },
         {
           "text": "нет",
-          "type": 306
+          "to": 306
         }
       ]
     },
@@ -841,7 +841,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -851,11 +851,11 @@
       "step": [
         {
           "text": "ждать",
-          "type": 389
+          "to": 389
         },
         {
           "text": "спросите",
-          "type": 553
+          "to": 553
         }
       ]
     },
@@ -874,11 +874,11 @@
       "step": [
         {
           "text": "побыстрее уехать",
-          "type": 262
+          "to": 262
         },
         {
           "text": "войти в дом",
-          "type": 575
+          "to": 575
         }
       ]
     },
@@ -888,15 +888,15 @@
       "step": [
         {
           "text": "выстрелите",
-          "type": 255
+          "to": 255
         },
         {
           "text": "обнажите шпагу",
-          "type": 614
+          "to": 614
         },
         {
           "text": "подождете",
-          "type": 468
+          "to": 468
         }
       ]
     },
@@ -911,7 +911,7 @@
       "step": [
         {
           "text": "едете дальше",
-          "type": 3
+          "to": 3
         }
       ]
     },
@@ -921,7 +921,7 @@
       "step": [
         {
           "text": "поверил вам",
-          "type": 554
+          "to": 554
         }
       ]
     },
@@ -931,7 +931,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1094,7 +1094,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1158,7 +1158,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1168,7 +1168,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1202,7 +1202,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1534,7 +1534,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1582,7 +1582,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1678,7 +1678,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -1959,7 +1959,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -2160,7 +2160,7 @@
         },
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -2180,7 +2180,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -2262,7 +2262,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -2890,7 +2890,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3036,7 +3036,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3076,7 +3076,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3150,7 +3150,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3670,7 +3670,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3757,7 +3757,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3933,7 +3933,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -3943,7 +3943,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -4069,7 +4069,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -4236,7 +4236,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -4387,7 +4387,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -4677,7 +4677,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -4829,7 +4829,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -5368,7 +5368,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -5707,7 +5707,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -5755,7 +5755,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -5891,7 +5891,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -6690,7 +6690,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -6759,7 +6759,7 @@
         {
           "if": "!god",
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -6934,7 +6934,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -7367,7 +7367,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -7451,7 +7451,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -8179,7 +8179,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -8236,7 +8236,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -8518,7 +8518,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -8637,7 +8637,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -9166,7 +9166,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -9176,7 +9176,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -9578,7 +9578,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -9763,7 +9763,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10029,7 +10029,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10063,7 +10063,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10110,7 +10110,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10155,7 +10155,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10165,7 +10165,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10213,7 +10213,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10223,7 +10223,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     },
@@ -10271,7 +10271,7 @@
       "step": [
         {
           "text": "КОНЕЦ",
-          "type": "deth"
+          "type": "gameOver"
         }
       ]
     }
