@@ -13,6 +13,7 @@ class GameStore {
   show;
   introText = "";
 
+  canLoadSaveGame = false; // есть ли сохраненные игры
   currentStep = 0; // текущий шаг
   listSteps = []; // список шагов
   historySteps = []; // история шагов
@@ -48,16 +49,24 @@ class GameStore {
     this.createNewGame();
   }
 
+  // возвращает можно ли загрузить игру
+  get canLoadOldGame() {
+    return this.canLoadSaveGame;
+  }
+
   get showIntroText() {
     return this.introText;
   }
   get isShowIntro() {
     return this.show;
   }
+
+  // получить информацию по текущему шагу
   get currentStepText() {
     return this.listSteps.find((step) => step.id === Number(this.currentStep));
   }
 
+  // получение шага по ИД
   getStepById(id) {
     this.listSteps.find((step) => step.id === id);
   }
@@ -161,11 +170,33 @@ class GameStore {
     this.show = false;
   }
 
+  // изменение текущего шага
   setCurrentStep(newCurrentStep) {
-    this.currentStep = newCurrentStep;
+    if (this.currentStep !== newCurrentStep) {
+      this.currentStep = newCurrentStep;
+      this.historySteps.push(this.currentStep);
+    }
+  }
+
+  // проверка есть ли сохраненные игры
+  checkHaveSaveGame() {
+    if (localStorage.getItem("shpaga-game-steps")) {
+      this.canLoadSaveGame = true;
+    }
+  }
+  // сохранение игры
+  saveGame() {
+    localStorage.setItem("shpaga-game-steps", this.historySteps);
+  }
+  // загрузка игры
+  loadGame() {
+    const steps = localStorage.getItem("shpaga-game-steps");
+    this.historySteps = steps.split(",");
+    this.currentStep = this.historySteps[this.historySteps.length - 1];
   }
 }
 decorate(GameStore, {
+  canLoadSaveGame: observable,
   currentStep: observable,
   listSteps: observable,
   historySteps: observable,
@@ -183,6 +214,7 @@ decorate(GameStore, {
   playerAmmo: observable,
   show: observable,
   introText: observable,
+  canLoadOldGame: computed,
   isShowIntro: computed,
   currentStepText: computed,
   turnDice: action,
@@ -190,11 +222,15 @@ decorate(GameStore, {
   openIntro: action,
   closeIntro: action,
   setCurrentStep: action,
+  checkHaveSaveGame: action,
+  saveGame: action,
+  loadGame: action,
 });
 
 const gameStore = new GameStore();
 
 autorun(() => {
+  gameStore.checkHaveSaveGame();
   axios
     .get(process.env.PUBLIC_URL + "shpaga.json", {
       dataType: "jsonp",
