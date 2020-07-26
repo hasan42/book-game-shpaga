@@ -1,0 +1,18 @@
+.store {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  margin: 0 auto;
+  width: 500px;
+  border: 1px solid #aeaeae;
+}
+.store-item {
+  display: flex;
+  justify-content: space-between;
+}
+.store-item__count {
+  align-items: center;
+}
+.store-item__count > span {
+  margin: 0 8px;
+}

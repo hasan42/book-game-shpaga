@@ -175,12 +175,128 @@ class GameStore {
     this.show = false;
   }
 
+  // получить значение параметра по названию
+  getParamValue(param) {
+    switch (param) {
+      case "strength":
+        return this.playerStrength;
+      case "agility":
+        return this.playerAgility;
+      case "honor":
+        return this.playerHonor;
+      case "money":
+        return this.playerMoney;
+      case "food":
+        return this.playerFood;
+      case "horse":
+        return this.playerHorse;
+      case "sword":
+        return this.playerSword;
+      case "dagger":
+        return this.playerDagger;
+      case "pistol":
+        return this.playerPistol;
+      case "ammo":
+        return this.playerAmmo;
+      default:
+        return null;
+    }
+  }
+  // получить название параметра
+  getParamName(param) {
+    switch (param) {
+      case "strength":
+        return "сила";
+      case "agility":
+        return "ловкость";
+      case "honor":
+        return "честь";
+      case "money":
+        return "деньги";
+      case "food":
+        return "еда";
+      case "horse":
+        return "лошадь";
+      case "sword":
+        return "меч";
+      case "dagger":
+        return "кинжал";
+      case "pistol":
+        return "пистолет";
+      case "ammo":
+        return "патроны";
+      default:
+        return null;
+    }
+  }
+  // увеличение параметра на заданную величину
+  increase(stat, count) {
+    if (stat === "strength") {
+      this.playerStrength = this.playerStrength + count;
+    }
+    if (stat === "agility") {
+      this.playerAgility = this.playerAgility + count;
+    }
+    if (stat === "honor") {
+      this.playerHonor = this.playerHonor + count;
+    }
+    if (stat === "money") {
+      this.playerMoney = this.playerMoney + count;
+    }
+    if (stat === "food") {
+      this.playerFood = this.playerFood + count;
+    }
+    if (stat === "horse") {
+      this.playerHorse = this.playerHorse + count;
+    }
+    if (stat === "sword") {
+      this.playerSword = this.playerSword + count;
+    }
+    if (stat === "dagger") {
+      this.playerDagger = this.playerDagger + count;
+    }
+    if (stat === "pistol") {
+      this.playerPistol = this.playerPistol + count;
+    }
+    if (stat === "ammo") {
+      this.playerAmmo = this.playerAmmo + count;
+    }
+  }
   // уменьшение параметра на заданную величину
   decrease(stat, count) {
     if (stat === "strength") {
       this.playerStrength = this.playerStrength - count;
     }
+    if (stat === "agility") {
+      this.playerAgility = this.playerAgility - count;
+    }
+    if (stat === "honor") {
+      this.playerHonor = this.playerHonor - count;
+    }
+    if (stat === "money") {
+      this.playerMoney = this.playerMoney - count;
+    }
+    if (stat === "food") {
+      this.playerFood = this.playerFood - count;
+    }
+    if (stat === "horse") {
+      this.playerHorse = this.playerHorse - count;
+    }
+    if (stat === "sword") {
+      this.playerSword = this.playerSword - count;
+    }
+    if (stat === "dagger") {
+      this.playerDagger = this.playerDagger - count;
+    }
+    if (stat === "pistol") {
+      this.playerPistol = this.playerPistol - count;
+    }
+    if (stat === "ammo") {
+      this.playerAmmo = this.playerAmmo - count;
+    }
   }
+
+  store() {}
 
   // изменение текущего шага
   setCurrentStep(newCurrentStep) {

@@ -3,6 +3,7 @@ import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
+import Store from "../../ui/Store/Store";
 
 const GamePage = inject("gameStore")(
   observer(({ GameStore }) => {
@@ -21,6 +22,9 @@ const GamePage = inject("gameStore")(
         <div className="game">
           <h1>GamePage {text.id}</h1>
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
+
+          {text.store && <Store store={text.store} />}
+
           <ul>
             {text.step.map((step, idx) =>
               step.type === "gameOver" ? (
