@@ -134,6 +134,7 @@ class GameStore {
     }
   }
 
+  // делает заглавной первую букву слова
   strCapitalize(str) {
     const strCapitalized = str.charAt(0).toUpperCase() + str.slice(1);
     return strCapitalized;
