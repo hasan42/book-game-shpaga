@@ -134,9 +134,9 @@ class GameStore {
     }
   }
 
-  removeSavedGames() {
-    localStorage.removeItem("shpaga-game-steps");
-    this.canLoadSaveGame = false;
+  strCapitalize(str) {
+    const strCapitalized = str.charAt(0).toUpperCase() + str.slice(1);
+    return strCapitalized;
   }
 
   // проверка удачи четно - повезло, нечетно - не повезло
@@ -177,30 +177,7 @@ class GameStore {
 
   // получить значение параметра по названию
   getParamValue(param) {
-    switch (param) {
-      case "strength":
-        return this.playerStrength;
-      case "agility":
-        return this.playerAgility;
-      case "honor":
-        return this.playerHonor;
-      case "money":
-        return this.playerMoney;
-      case "food":
-        return this.playerFood;
-      case "horse":
-        return this.playerHorse;
-      case "sword":
-        return this.playerSword;
-      case "dagger":
-        return this.playerDagger;
-      case "pistol":
-        return this.playerPistol;
-      case "ammo":
-        return this.playerAmmo;
-      default:
-        return null;
-    }
+    return this[`player${this.strCapitalize(param)}`];
   }
   // получить название параметра
   getParamName(param) {
@@ -231,69 +208,13 @@ class GameStore {
   }
   // увеличение параметра на заданную величину
   increase(stat, count) {
-    if (stat === "strength") {
-      this.playerStrength = this.playerStrength + count;
-    }
-    if (stat === "agility") {
-      this.playerAgility = this.playerAgility + count;
-    }
-    if (stat === "honor") {
-      this.playerHonor = this.playerHonor + count;
-    }
-    if (stat === "money") {
-      this.playerMoney = this.playerMoney + count;
-    }
-    if (stat === "food") {
-      this.playerFood = this.playerFood + count;
-    }
-    if (stat === "horse") {
-      this.playerHorse = this.playerHorse + count;
-    }
-    if (stat === "sword") {
-      this.playerSword = this.playerSword + count;
-    }
-    if (stat === "dagger") {
-      this.playerDagger = this.playerDagger + count;
-    }
-    if (stat === "pistol") {
-      this.playerPistol = this.playerPistol + count;
-    }
-    if (stat === "ammo") {
-      this.playerAmmo = this.playerAmmo + count;
-    }
+    this[`player${this.strCapitalize(stat)}`] =
+      this[`player${this.strCapitalize(stat)}`] + count;
   }
   // уменьшение параметра на заданную величину
   decrease(stat, count) {
-    if (stat === "strength") {
-      this.playerStrength = this.playerStrength - count;
-    }
-    if (stat === "agility") {
-      this.playerAgility = this.playerAgility - count;
-    }
-    if (stat === "honor") {
-      this.playerHonor = this.playerHonor - count;
-    }
-    if (stat === "money") {
-      this.playerMoney = this.playerMoney - count;
-    }
-    if (stat === "food") {
-      this.playerFood = this.playerFood - count;
-    }
-    if (stat === "horse") {
-      this.playerHorse = this.playerHorse - count;
-    }
-    if (stat === "sword") {
-      this.playerSword = this.playerSword - count;
-    }
-    if (stat === "dagger") {
-      this.playerDagger = this.playerDagger - count;
-    }
-    if (stat === "pistol") {
-      this.playerPistol = this.playerPistol - count;
-    }
-    if (stat === "ammo") {
-      this.playerAmmo = this.playerAmmo - count;
-    }
+    this[`player${this.strCapitalize(stat)}`] =
+      this[`player${this.strCapitalize(stat)}`] - count;
   }
 
   store() {}
@@ -321,6 +242,11 @@ class GameStore {
     const steps = localStorage.getItem("shpaga-game-steps");
     this.historySteps = steps.split(",");
     this.currentStep = this.historySteps[this.historySteps.length - 1];
+  }
+  // удаление сохраненной игры
+  removeSavedGames() {
+    localStorage.removeItem("shpaga-game-steps");
+    this.canLoadSaveGame = false;
   }
 }
 decorate(GameStore, {
