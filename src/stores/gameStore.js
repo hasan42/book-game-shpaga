@@ -213,6 +213,19 @@ class GameStore {
 
   store() {}
 
+  attack(enemy) {
+    const enemyHit = this.turnDice() * 2 + enemy.agility;
+    const playerHit = this.turnDice() * 2 + this.playerAgility;
+    if (playerHit === enemyHit) {
+      return 0;
+    } else if (playerHit > enemyHit) {
+      return 2;
+    } else {
+      this.decrease("strength", 2);
+      return 0;
+    }
+  }
+
   // изменение текущего шага
   setCurrentStep(newCurrentStep) {
     if (this.currentStep !== newCurrentStep) {

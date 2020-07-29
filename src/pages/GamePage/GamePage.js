@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
+import Fight from "../../ui/Fight/Fight";
 
 const GamePage = inject("gameStore")(
   observer(({ GameStore }) => {
@@ -24,6 +25,8 @@ const GamePage = inject("gameStore")(
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
 
           {text.store && <Store store={text.store} />}
+
+          {text.fight && <Fight fight={text.fight} />}
 
           <ul>
             {text.step.map((step, idx) =>

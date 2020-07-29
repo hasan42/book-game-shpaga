@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { useParams, Link, Redirect, useHistory } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import "./HomePage.css";
