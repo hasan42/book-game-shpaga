@@ -5,6 +5,8 @@ import gameStore from "./stores/gameStore";
 import Layout from "./ui/Layout/Layout";
 import IntroPage from "./pages/IntroPage/IntroPage";
 import GamePage from "./pages/GamePage/GamePage";
+import CreateCharacter from "./pages/CreateCharacter/CreateCharacter";
+import HomePage from "./pages/HomePage/HomePage";
 
 const stores = {
   gameStore,
@@ -15,7 +17,9 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route path="/game/:id" component={GamePage} />
-        <Route path="/" exact component={IntroPage} />
+        <Route path="/character" component={CreateCharacter} />
+        <Route path="/intro" component={IntroPage} />
+        <Route path="/" exact component={HomePage} />
         <Redirect to="/" />
       </Switch>
     );
@@ -23,7 +27,8 @@ class App extends Component {
     return (
       <Layout>
         <div>
-          <Link to="/">Home</Link> <Link to="/game/1">Game</Link>
+          <Link to="/">Home</Link> <Link to="/character">Character</Link>{" "}
+          <Link to="/game/1">Game</Link>
         </div>
         {routes}
       </Layout>

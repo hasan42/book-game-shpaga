@@ -18,13 +18,7 @@ class GameStore {
   listSteps = []; // список шагов
   historySteps = []; // история шагов
 
-  specialList = [
-    "secretSword",
-    "swordAndDagger",
-    "doublePistol",
-    "leftHand",
-    "swimming",
-  ]; // список возможных специальных сил
+  specialList = []; // список возможных специальных сил
   ifHonorGoesZero = 150; // если честь упала до нуля
 
   playerAgilityMax = 0; // максимальная ловкость
@@ -47,11 +41,6 @@ class GameStore {
   constructor() {
     this.show = false;
     this.createNewGame();
-  }
-
-  // возвращает можно ли загрузить игру
-  get canLoadOldGame() {
-    return this.canLoadSaveGame;
   }
 
   get showIntroText() {
@@ -132,6 +121,10 @@ class GameStore {
         this.playerStrength = 20;
         break;
     }
+  }
+
+  setSpecial(spec) {
+    this.playerSpecial = spec;
   }
 
   // делает заглавной первую букву слова
@@ -228,6 +221,10 @@ class GameStore {
     }
   }
 
+  // возвращает можно ли загрузить игру
+  get canLoadOldGame() {
+    return this.canLoadSaveGame;
+  }
   // проверка есть ли сохраненные игры
   checkHaveSaveGame() {
     if (localStorage.getItem("shpaga-game-steps")) {
@@ -251,13 +248,17 @@ class GameStore {
   }
 }
 decorate(GameStore, {
-  canLoadSaveGame: observable,
   currentStep: observable,
   listSteps: observable,
   historySteps: observable,
+
+  introText: observable,
+
+  calculatePlayerStat: action,
   playerAgility: observable,
   playerStrength: observable,
   playerHonor: observable,
+  playerSpecial: observable,
   playerGod: observable,
   playerMoney: observable,
   playerFood: observable,
@@ -267,18 +268,19 @@ decorate(GameStore, {
   playerDagger: observable,
   playerPistol: observable,
   playerAmmo: observable,
-  show: observable,
-  introText: observable,
+  setSpecial: action,
 
-  canLoadOldGame: computed,
   isShowIntro: computed,
   currentStepText: computed,
   turnDice: action,
 
+  show: observable,
   toggleIntro: action,
   openIntro: action,
   closeIntro: action,
 
+  canLoadOldGame: computed,
+  canLoadSaveGame: observable,
   setCurrentStep: action,
   removeSavedGames: action,
   checkHaveSaveGame: action,
@@ -306,6 +308,9 @@ autorun(() => {
       }
       if (response.data.game) {
         gameStore.listSteps = response.data.game;
+      }
+      if (response.data.special) {
+        gameStore.specialList = response.data.special;
       }
     })
     .catch((error) => {

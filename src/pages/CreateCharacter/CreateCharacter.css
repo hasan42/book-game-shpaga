@@ -1,0 +1,9 @@
+.create-character {
+  display: flex;
+  justify-content: space-between;
+}
+.create-character__item:first-child {
+  width: calc(100% - 280px);
+}
+.create-character__item:last-child {
+}

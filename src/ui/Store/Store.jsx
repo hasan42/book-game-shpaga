@@ -8,7 +8,7 @@ const Store = inject("gameStore")(
     return (
       <div className="store">
         {store.map((storeItem, idx) => (
-          <div className="store-item">
+          <div className="store-item" key={idx}>
             <div className="store-item__name">
               {gameStore.getParamName(storeItem.item)}
             </div>

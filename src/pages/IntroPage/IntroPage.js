@@ -15,30 +15,13 @@ const IntroPage = inject("gameStore")(
           dangerouslySetInnerHTML={{ __html: gameStore.introText }}
         ></div>
 
-        <ul>
-          <li>
-            <button
-              onClick={() => {
-                gameStore.removeSavedGames();
-                history.push(`/game/1`);
-              }}
-            >
-              Начать новую игру
-            </button>
-          </li>
-          {gameStore.canLoadSaveGame && (
-            <li>
-              <button
-                onClick={() => {
-                  gameStore.loadGame();
-                  history.push(`/game/${gameStore.currentStep}`);
-                }}
-              >
-                Загрузить игру
-              </button>
-            </li>
-          )}
-        </ul>
+        <button
+          onClick={() => {
+            history.push(`/game/1`);
+          }}
+        >
+          Начать путешествие
+        </button>
       </div>
     );
   })

@@ -1,0 +1,11 @@
+.special-item {
+  margin-top: 30px;
+  border-bottom: 1px solid #aeaeae;
+}
+
+.special-item__text {
+  display: none;
+}
+.special-item__collapse input[type="checkbox"]:checked ~ .special-item__text {
+  display: block;
+}
