@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
 import Fight from "../../ui/Fight/Fight";
+import "./GamePage.css";
 
 const GamePage = inject("gameStore")(
   observer(({ GameStore }) => {
@@ -13,6 +14,18 @@ const GamePage = inject("gameStore")(
     const text = gameStore.currentStepText;
 
     const history = useHistory();
+
+    const [disabledSteps, setDisabledSteps] = useState(false);
+
+    useMemo(() => {
+      if (text.fight) {
+        setDisabledSteps(true);
+      }
+    }, [text]);
+
+    const onFightEndHandle = () => {
+      setDisabledSteps(false);
+    };
 
     return text ? (
       <div>
@@ -26,9 +39,15 @@ const GamePage = inject("gameStore")(
 
           {text.store && <Store store={text.store} />}
 
-          {text.fight && <Fight fight={text.fight} />}
+          {text.fight && (
+            <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
+          )}
 
-          <ul>
+          <ul
+            className={
+              disabledSteps ? "game-steps_inactive" : "game-steps_active"
+            }
+          >
             {text.step.map((step, idx) =>
               step.type === "gameOver" ? (
                 <>

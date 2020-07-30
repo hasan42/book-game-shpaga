@@ -4,7 +4,7 @@ import gameStore from "../../stores/gameStore";
 import "./Fight.css";
 
 const CharacterInfo = inject("gameStore")(
-  observer(({ GameStore, fight }) => {
+  observer(({ GameStore, fight, onFightEnd }) => {
     let enemyFight = fight.enemy;
 
     return (
@@ -21,7 +21,10 @@ const CharacterInfo = inject("gameStore")(
                     let attackDmg = gameStore.attack(enemyC);
                     enemyFight[idx].strength =
                       enemyFight[idx].strength - attackDmg;
-                    console.log(attackDmg);
+
+                    if (enemyFight[idx].strength <= 0) {
+                      onFightEnd();
+                    }
                   }}
                 >
                   Аттаковать
