@@ -36,6 +36,7 @@ class GameStore {
   playerSword = 0; // меч игрока
   playerDagger = 0; // кинжавл игрока
   playerPistol = 0; // пистолет игрока
+  playerRifle = 0; // аркебуза
   playerAmmo = 0; // патроны игрока
 
   constructor() {

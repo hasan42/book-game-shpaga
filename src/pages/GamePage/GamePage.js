@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
+import { keysIn, valuesIn } from "lodash";
 import gameStore from "../../stores/gameStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
@@ -17,8 +18,18 @@ const GamePage = inject("gameStore")(
 
     const [disabledSteps, setDisabledSteps] = useState(false);
 
+    useEffect(() => {
+      if (text && text.effect) {
+        text.effect.forEach((el) => {
+          const key = keysIn(el),
+            value = valuesIn(el);
+          gameStore.increase(key[0], value[0]);
+        });
+      }
+    }, [text]);
+
     useMemo(() => {
-      if (text.fight) {
+      if (text && text.fight) {
         setDisabledSteps(true);
       }
     }, [text]);
@@ -74,11 +85,6 @@ const GamePage = inject("gameStore")(
               )
             )}
           </ul>
-        </div>
-        <div>
-          <button onClick={() => gameStore.decrease("strength", 2)}>
-            - str
-          </button>
         </div>
       </div>
     ) : (
