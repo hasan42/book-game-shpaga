@@ -203,8 +203,12 @@ class GameStore {
   }
   // увеличение параметра на заданную величину
   increase(stat, count) {
-    this[`player${this.strCapitalize(stat)}`] =
-      this[`player${this.strCapitalize(stat)}`] + count;
+    if (stat === "strength" && count === "full") {
+      this.playerStrength = this.playerStrengthMax;
+    } else {
+      this[`player${this.strCapitalize(stat)}`] =
+        this[`player${this.strCapitalize(stat)}`] + count;
+    }
   }
   // уменьшение параметра на заданную величину
   decrease(stat, count) {
