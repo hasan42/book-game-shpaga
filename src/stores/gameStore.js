@@ -248,6 +248,7 @@ class GameStore {
   // сохранение игры
   saveGame() {
     localStorage.setItem("shpaga-game-steps", this.historySteps);
+    this.canLoadSaveGame = true;
   }
   // загрузка игры
   loadGame() {

@@ -46,6 +46,11 @@ const GamePage = inject("gameStore")(
         <CharacterInfo />
         <div className="game">
           <h1>GamePage {text.id}</h1>
+          <div>
+            <button onClick={() => gameStore.decrease("strength", 2)}>
+              deth
+            </button>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
 
           {text.store && <Store store={text.store} />}
