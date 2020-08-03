@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import "./Fight.css";
 
-const CharacterInfo = inject("gameStore")(
+const Fight = inject("gameStore")(
   observer(({ GameStore, fight, onFightEnd }) => {
     let enemyFight = fight.enemy;
 
@@ -38,4 +38,4 @@ const CharacterInfo = inject("gameStore")(
   })
 );
 
-export default CharacterInfo;
+export default Fight;

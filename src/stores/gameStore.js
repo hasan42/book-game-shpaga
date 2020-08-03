@@ -58,7 +58,7 @@ class GameStore {
 
   // получение шага по ИД
   getStepById(id) {
-    this.listSteps.find((step) => step.id === id);
+    return this.listSteps[Number(id) - 1];
   }
 
   // кидать кубик
@@ -291,6 +291,7 @@ decorate(GameStore, {
 
   isShowIntro: computed,
   currentStepText: computed,
+  getStepById: action,
   turnDice: action,
 
   show: observable,
