@@ -314,7 +314,7 @@ const gameStore = new GameStore();
 autorun(() => {
   gameStore.checkHaveSaveGame();
   axios
-    .get(process.env.PUBLIC_URL + "shpaga.json", {
+    .get(process.env.PUBLIC_URL + "/shpaga.json", {
       dataType: "jsonp",
       headers: {
         "Content-Type": "application/json",
