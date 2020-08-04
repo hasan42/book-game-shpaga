@@ -17,6 +17,7 @@ const GamePage = inject("gameStore")(
     const history = useHistory();
 
     const [disabledSteps, setDisabledSteps] = useState(false);
+    const [luckStep, setLuckStep] = useState(null);
 
     useEffect(() => {
       if (text && text.effect) {
@@ -29,8 +30,16 @@ const GamePage = inject("gameStore")(
     }, [text]);
 
     useMemo(() => {
-      if (text && text.fight) {
-        setDisabledSteps(true);
+      if (text) {
+        if (text.fight) {
+          setDisabledSteps(true);
+        }
+        if (text.step.find((step) => step.if)) {
+          if (text.step.find((step) => step.if === "luck")) {
+            const newSetLuck = gameStore.checkYouLuck();
+            setLuckStep(newSetLuck);
+          }
+        }
       }
     }, [text]);
 
@@ -64,31 +73,60 @@ const GamePage = inject("gameStore")(
               disabledSteps ? "game-steps_inactive" : "game-steps_active"
             }
           >
-            {text.step.map((step, idx) =>
-              step.type === "gameOver" ? (
-                <>
-                  <li key={`gameOver${idx}`}>
-                    <Link to={"/"}>{step.text}</Link>
-                  </li>
-                  {gameStore.canLoadSaveGame && (
-                    <li key={`gameOverLoad${idx}`}>
-                      <button
-                        onClick={() => {
-                          gameStore.loadGame();
-                          history.push(`/game/${gameStore.currentStep}`);
-                        }}
-                      >
-                        Загрузить игру
-                      </button>
+            {text.step.map((step, idx) => {
+              if (step.if) {
+                if (step.if === "luck") {
+                  return (
+                    <li
+                      className={
+                        luckStep ? "game-steps_inactive" : "game-steps_active"
+                      }
+                      key={step.to}
+                    >
+                      <Link to={"/game/" + step.to}>{step.text}</Link>
                     </li>
-                  )}
-                </>
-              ) : (
-                <li key={step.to}>
-                  <Link to={"/game/" + step.to}>{step.text}</Link>
-                </li>
-              )
-            )}
+                  );
+                }
+                if (step.if === "!luck") {
+                  return (
+                    <li
+                      className={
+                        !luckStep ? "game-steps_inactive" : "game-steps_active"
+                      }
+                      key={step.to}
+                    >
+                      <Link to={"/game/" + step.to}>{step.text}</Link>
+                    </li>
+                  );
+                }
+              } else if (step.type === "gameOver") {
+                return (
+                  <>
+                    <li key={`gameOver${idx}`}>
+                      <Link to={"/"}>{step.text}</Link>
+                    </li>
+                    {gameStore.canLoadSaveGame && (
+                      <li key={`gameOverLoad${idx}`}>
+                        <button
+                          onClick={() => {
+                            gameStore.loadGame();
+                            history.push(`/game/${gameStore.currentStep}`);
+                          }}
+                        >
+                          Загрузить игру
+                        </button>
+                      </li>
+                    )}
+                  </>
+                );
+              } else {
+                return (
+                  <li key={step.to}>
+                    <Link to={"/game/" + step.to}>{step.text}</Link>
+                  </li>
+                );
+              }
+            })}
           </ul>
         </div>
       </div>
