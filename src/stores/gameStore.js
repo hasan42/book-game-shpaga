@@ -10,7 +10,6 @@ import {
 import axios from "axios";
 
 class GameStore {
-  show;
   introText = "";
 
   canLoadSaveGame = false; // есть ли сохраненные игры
@@ -42,15 +41,11 @@ class GameStore {
   roadMapList = [];
 
   constructor() {
-    this.show = false;
     this.createNewGame();
   }
 
   get showIntroText() {
     return this.introText;
-  }
-  get isShowIntro() {
-    return this.show;
   }
 
   // получить информацию по текущему шагу
@@ -166,19 +161,6 @@ class GameStore {
     this.playerPistol = 1; // пистолет
     this.playerMoney = 100; // деньги
     this.playerGod = true; // обращение к богу
-  }
-
-  toggleIntro() {
-    this.show = !this.show;
-  }
-
-  openIntro() {
-    console.log(this);
-    this.show = true;
-  }
-
-  closeIntro() {
-    this.show = false;
   }
 
   // получить значение параметра по названию
@@ -316,15 +298,9 @@ decorate(GameStore, {
   playerAmmo: observable,
   setSpecial: action,
 
-  isShowIntro: computed,
   currentStepText: computed,
   getStepById: action,
   turnDice: action,
-
-  show: observable,
-  toggleIntro: action,
-  openIntro: action,
-  closeIntro: action,
 
   canLoadOldGame: computed,
   canLoadSaveGame: observable,

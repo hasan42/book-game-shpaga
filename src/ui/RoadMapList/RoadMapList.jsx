@@ -8,7 +8,11 @@ const RoadMapList = ({ items }) => {
         if (item.to && typeof item.to === "number") {
           return <RoadMapItem itemId={item.to} key={idx} />;
         } else {
-          return <div className="road-map-id road-map-id_link">{item.to}</div>;
+          return (
+            <div className="road-map-id road-map-id_link" key={idx}>
+              {item.to}
+            </div>
+          );
         }
       })}
     </div>
