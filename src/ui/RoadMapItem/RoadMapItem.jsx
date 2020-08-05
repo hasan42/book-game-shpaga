@@ -1,16 +1,19 @@
 import React from "react";
-import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import RoadMapList from "../RoadMapList/RoadMapList";
 
 const RoadMapItem = ({ itemId }) => {
   const item = gameStore.getStepById(itemId);
 
-  return (
+  return gameStore.checkRoadMap(itemId) ? (
     <div className="road-map-item">
-      <div>{item.id}</div>
+      <div className="road-map-id">{item.id}</div>
       {/* <div>{item.text}</div> */}
       <RoadMapList items={item.step} />
+    </div>
+  ) : (
+    <div className="road-map-item">
+      <div className="road-map-id road-map-id_link">{item.id}</div>
     </div>
   );
 };

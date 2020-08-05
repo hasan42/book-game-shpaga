@@ -5,7 +5,7 @@ import "./RoadMap.css";
 const RoadMap = () => {
   return (
     <div className="road-map">
-      <RoadMapItem itemId={115} />
+      <RoadMapItem itemId={1} />
     </div>
   );
 };

@@ -39,6 +39,8 @@ class GameStore {
   playerRifle = 0; // аркебуза
   playerAmmo = 0; // патроны игрока
 
+  roadMapList = [];
+
   constructor() {
     this.show = false;
     this.createNewGame();
@@ -59,6 +61,15 @@ class GameStore {
   // получение шага по ИД
   getStepById(id) {
     return this.listSteps[Number(id) - 1];
+  }
+
+  checkRoadMap(id) {
+    if (this.roadMapList.find((el) => el === id)) {
+      return false;
+    } else {
+      this.roadMapList.push(id);
+      return true;
+    }
   }
 
   // кидать кубик

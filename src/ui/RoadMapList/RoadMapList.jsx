@@ -1,6 +1,4 @@
 import React from "react";
-import { observer, inject } from "mobx-react";
-import gameStore from "../../stores/gameStore";
 import RoadMapItem from "../RoadMapItem/RoadMapItem";
 
 const RoadMapList = ({ items }) => {
@@ -9,8 +7,9 @@ const RoadMapList = ({ items }) => {
       {items.map((item, idx) => {
         if (item.to && typeof item.to === "number") {
           return <RoadMapItem itemId={item.to} key={idx} />;
+        } else {
+          return <div className="road-map-id road-map-id_link">{item.to}</div>;
         }
-        return null;
       })}
     </div>
   );
