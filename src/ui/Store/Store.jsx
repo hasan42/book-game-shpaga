@@ -29,7 +29,10 @@ const Store = inject("gameStore")(
                   gameStore.increase(storeItem.item, 1);
                   gameStore.decrease("money", storeItem.price);
                 }}
-                disabled={gameStore.getParamValue("money") < storeItem.price}
+                disabled={
+                  gameStore.getParamValue("money") < storeItem.price ||
+                  gameStore.checkInventory()
+                }
               >
                 +
               </button>

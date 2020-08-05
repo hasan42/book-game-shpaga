@@ -153,7 +153,7 @@ class GameStore {
     this.playerHorse = 1; // лошадь
     this.playerSword = 1; // меч
     this.playerPistol = 1; // пистолет
-    this.playerMoney = 15; // деньги
+    this.playerMoney = 100; // деньги
     this.playerGod = true; // обращение к богу
   }
 
@@ -214,6 +214,22 @@ class GameStore {
   decrease(stat, count) {
     this[`player${this.strCapitalize(stat)}`] =
       this[`player${this.strCapitalize(stat)}`] - count;
+  }
+
+  // проверка объема инвентаря
+  checkInventory() {
+    const sword = this.playerSword - 1 >= 0 ? this.playerSword - 1 : 0;
+    const dagger = this.playerDagger - 1 >= 0 ? this.playerDagger - 1 : 0;
+    const pistol = this.playerPistol - 2 >= 0 ? this.playerPistol - 2 : 0;
+
+    return sword +
+      dagger +
+      pistol +
+      this.playerInventory.length +
+      this.playerRifle >=
+      this.playerInventoryMax
+      ? true
+      : false;
   }
 
   store() {}
