@@ -62,7 +62,7 @@ const GamePage = inject("gameStore")(
           </div>
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
 
-          {text.store && <Store store={text.store} />}
+          {text.store && <Store type={text.storeType} store={text.store} />}
 
           {text.fight && (
             <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
