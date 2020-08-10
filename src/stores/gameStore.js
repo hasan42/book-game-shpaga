@@ -159,7 +159,7 @@ class GameStore {
     this.playerHorse = 1; // лошадь
     this.playerSword = 1; // меч
     this.playerPistol = 1; // пистолет
-    this.playerMoney = 100; // деньги
+    this.playerMoney = 15; // деньги
     this.playerGod = true; // обращение к богу
   }
 
@@ -227,16 +227,52 @@ class GameStore {
 
   store() {}
 
-  attack(enemy) {
-    const enemyHit = this.turnDice() * 2 + enemy.agility;
-    const playerHit = this.turnDice() * 2 + this.playerAgility;
+  // атака. список врагов, ид атакующего
+  attack(enemyList, enemyAttacker) {
+    let resultFight = 0; // результат схватки
+    // console.log(enemyList);
+    enemyList.forEach((en, idx) => {
+      const enemyHit = this.calculateHit(en.agility); // расчет силы удара
+
+      if (en.strength > 0) {
+        // если враг не побежден
+        if (idx !== enemyAttacker) {
+          // НЕ цель атаки
+          if (enemyHit === "damaged") {
+            // враг попал - отнять 2е силы игрока
+            this.decrease("strength", 2);
+          }
+        } else {
+          // цель атаки
+          if (enemyHit === "attack") {
+            resultFight = 2;
+          } else if (enemyHit === "damaged") {
+            this.decrease("strength", 2);
+            resultFight = 0;
+          } else {
+            resultFight = 0;
+          }
+        }
+      }
+    });
+
+    // возвращаем урон по врагу
+    return resultFight;
+  }
+
+  // расчет удара
+  calculateHit(agility) {
+    const enemyHit = this.turnDice() * 2 + agility; // сила удара врага
+    const playerHit = this.turnDice() * 2 + this.playerAgility; // сила удара игрока
     if (playerHit === enemyHit) {
-      return 0;
+      // если равно - парирование
+      return "miss";
     } else if (playerHit > enemyHit) {
-      return 2;
+      // если у игрока больше - удар по врагу
+      return "attack";
     } else {
-      this.decrease("strength", 2);
-      return 0;
+      // если у врага больше - удар по игроку
+      return "damaged";
     }
   }
 

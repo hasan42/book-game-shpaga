@@ -17,12 +17,16 @@ const Fight = inject("gameStore")(
               </div>
               <div className="store-item__count">
                 <button
+                  disabled={enemyC.strength <= 0}
                   onClick={() => {
-                    let attackDmg = gameStore.attack(enemyC);
+                    let attackDmg = gameStore.attack(enemyFight, idx);
                     enemyFight[idx].strength =
                       enemyFight[idx].strength - attackDmg;
 
-                    if (enemyFight[idx].strength <= 0) {
+                    if (
+                      enemyFight.filter((en) => en.strength <= 0).length ===
+                      enemyFight.length
+                    ) {
                       onFightEnd();
                     }
                   }}
