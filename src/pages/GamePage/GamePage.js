@@ -26,7 +26,13 @@ const GamePage = inject("gameStore")(
           if (el.if) {
             if (el.if === "food" && gameStore.playerFood > 0 && !useFood) {
               gameStore.increase("strength", el.strength);
-              gameStore.decrease("food", 1);
+              if (el.food !== undefined) {
+                gameStore.decrease("food", 1);
+              }
+              if (el.money !== undefined) {
+                gameStore.decrease("money", el.money);
+              }
+
               useFood = true;
             }
             if (el.if === "!food" && gameStore.playerFood <= 0 && !useFood) {
