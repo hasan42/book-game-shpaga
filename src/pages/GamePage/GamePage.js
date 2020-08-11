@@ -99,6 +99,34 @@ const GamePage = inject("gameStore")(
                     </li>
                   );
                 }
+                if (step.if === "swimming") {
+                  return (
+                    <li
+                      className={
+                        gameStore.playerSpecial === "swimming"
+                          ? "game-steps_active"
+                          : "game-steps_inactive"
+                      }
+                      key={step.to}
+                    >
+                      <Link to={"/game/" + step.to}>{step.text}</Link>
+                    </li>
+                  );
+                }
+                if (step.if === "!swimming") {
+                  return (
+                    <li
+                      className={
+                        gameStore.playerSpecial === "swimming"
+                          ? "game-steps_inactive"
+                          : "game-steps_active"
+                      }
+                      key={step.to}
+                    >
+                      <Link to={"/game/" + step.to}>{step.text}</Link>
+                    </li>
+                  );
+                }
               } else if (step.type === "gameOver") {
                 return (
                   <>

@@ -17,7 +17,7 @@ const IntroPage = inject("gameStore")(
 
         <button
           onClick={() => {
-            history.push(`/game/6`);
+            history.push(`/game/215`);
           }}
         >
           Начать путешествие
