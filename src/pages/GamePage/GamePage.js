@@ -21,10 +21,23 @@ const GamePage = inject("gameStore")(
 
     useEffect(() => {
       if (text && text.effect) {
+        let useFood = false;
         text.effect.forEach((el) => {
-          const key = keysIn(el),
-            value = valuesIn(el);
-          gameStore.increase(key[0], value[0]);
+          if (el.if) {
+            if (el.if === "food" && gameStore.playerFood > 0 && !useFood) {
+              gameStore.increase("strength", el.strength);
+              gameStore.decrease("food", 1);
+              useFood = true;
+            }
+            if (el.if === "!food" && gameStore.playerFood <= 0 && !useFood) {
+              gameStore.decrease("strength", Math.abs(el.strength));
+              useFood = true;
+            }
+          } else {
+            const key = keysIn(el),
+              value = valuesIn(el);
+            gameStore.increase(key[0], value[0]);
+          }
         });
       }
     }, [text]);

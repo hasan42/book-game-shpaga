@@ -28,7 +28,7 @@ class GameStore {
   playerHonor = 0; // количество чести
   playerGod = false; // обратиться к богу. Максимум 1 раз
   playerMoney = 0; // количество денег
-  playerFood = 0; // количество еды. Максимально 2
+  playerFood = 2; // количество еды. Максимально 2
   playerInventoryMax = 5; // максимальное количество предметов в инвентаре
   playerInventory = []; // инвентарь игрока
   playerHorse = 0; // лошадь игрока
