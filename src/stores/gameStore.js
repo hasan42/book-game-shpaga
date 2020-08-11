@@ -238,18 +238,41 @@ class GameStore {
         // если враг не побежден
         if (idx !== enemyAttacker) {
           // НЕ цель атаки
-          if (enemyHit === "damaged") {
+          if (enemyHit.hit === "damaged") {
             // враг попал - отнять 2е силы игрока
             this.decrease("strength", 2);
           }
         } else {
           // цель атаки
-          if (enemyHit === "attack") {
-            resultFight = 2;
-          } else if (enemyHit === "damaged") {
+          if (enemyHit.hit === "attack") {
+            // атака
+            if (
+              this.playerSpecial === "swordAndDagger" &&
+              this.playerDagger > 0 &&
+              enemyHit.isEven
+            ) {
+              // если четное и умение - шпага+кинжал - отнимаем 3
+              console.log("атака playerSpecial");
+              resultFight = 3;
+            } else {
+              resultFight = 2;
+            }
+          } else if (enemyHit.hit === "damaged") {
+            // проиграл
             this.decrease("strength", 2);
-            resultFight = 0;
+            if (
+              this.playerSpecial === "swordAndDagger" &&
+              this.playerDagger > 0 &&
+              enemyHit.isEven
+            ) {
+              console.log("проиграл playerSpecial");
+              // если четное и умение - шпага+кинжал - отнимаем 2
+              resultFight = 2;
+            } else {
+              resultFight = 0;
+            }
           } else {
+            //парирование
             resultFight = 0;
           }
         }
@@ -263,16 +286,19 @@ class GameStore {
   // расчет удара
   calculateHit(agility) {
     const enemyHit = this.turnDice() * 2 + agility; // сила удара врага
-    const playerHit = this.turnDice() * 2 + this.playerAgility; // сила удара игрока
+    const playerDice = this.turnDice(); // кубик игрока
+    const playerHit = playerDice * 2 + this.playerAgility; // сила удара игрока
+    const isEven = playerDice % 2 === 0 ? true : false; // проверка на четность
+
     if (playerHit === enemyHit) {
       // если равно - парирование
-      return "miss";
+      return { hit: "miss", isEven: isEven };
     } else if (playerHit > enemyHit) {
       // если у игрока больше - удар по врагу
-      return "attack";
+      return { hit: "attack", isEven: isEven };
     } else {
       // если у врага больше - удар по игроку
-      return "damaged";
+      return { hit: "damaged", isEven: isEven };
     }
   }
 
