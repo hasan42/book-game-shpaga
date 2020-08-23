@@ -3,13 +3,17 @@ import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import { keysIn, valuesIn } from "lodash";
 import gameStore from "../../stores/gameStore";
+import adminStore from "../../stores/adminStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
 import Fight from "../../ui/Fight/Fight";
 import "./GamePage.css";
 
-const GamePage = inject("gameStore")(
-  observer(({ GameStore }) => {
+const GamePage = inject(
+  "gameStore",
+  "adminStore"
+)(
+  observer(({ GameStore, AdminStore }) => {
     const { id } = useParams();
     gameStore.setCurrentStep(id);
     const text = gameStore.currentStepText;
@@ -74,11 +78,14 @@ const GamePage = inject("gameStore")(
         <CharacterInfo />
         <div className="game">
           <h1>GamePage {text.id}</h1>
-          <div>
-            <button onClick={() => gameStore.decrease("strength", 2)}>
-              deth
-            </button>
-          </div>
+          {adminStore.isAdmin && (
+            <div>
+              <button onClick={() => gameStore.decrease("strength", 2)}>
+                deth
+              </button>
+            </div>
+          )}
+
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
 
           {text.store && <Store type={text.storeType} store={text.store} />}

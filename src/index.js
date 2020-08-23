@@ -4,11 +4,13 @@ import { Provider } from "mobx-react";
 import "./index.css";
 import App from "./App";
 import gameStore from "./stores/gameStore";
+import adminStore from "./stores/adminStore";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
 const stores = {
   gameStore,
+  adminStore,
 };
 
 ReactDOM.render(

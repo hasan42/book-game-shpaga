@@ -5,7 +5,7 @@ import "./Store.css";
 
 const Store = inject("gameStore")(
   observer(({ GameStore, type, store }) => {
-    const initStore = [...store];
+    // const initStore = [...store];
     return (
       <div className="store">
         {store.map((storeItem, idx) => (

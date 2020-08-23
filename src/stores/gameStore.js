@@ -1,12 +1,4 @@
-import {
-  observable,
-  computed,
-  autorun,
-  reaction,
-  get,
-  action,
-  decorate,
-} from "mobx";
+import { observable, computed, autorun, action, decorate } from "mobx";
 import axios from "axios";
 
 class GameStore {
@@ -24,6 +16,7 @@ class GameStore {
   playerStrengthMax = 0; // максимальная сила
   playerAgility = 0; // текущая ловкость
   playerStrength = 0; // текущая сила
+
   playerSpecial = null; // особая сила
   playerHonor = 0; // количество чести
   playerGod = false; // обратиться к богу. Максимум 1 раз
@@ -155,12 +148,20 @@ class GameStore {
   // создание новой игры
   createNewGame() {
     this.calculatePlayerStat(); // проставляем статы
+    this.playerSpecial = null; // абилка
     this.playerHonor = 3; // честь
+    this.playerGod = true; // обращение к богу
+    this.playerMoney = 15; // деньги
+    this.playerFood = 2; // еда
+    this.playerInventory = []; // инвентарь игрока
     this.playerHorse = 1; // лошадь
     this.playerSword = 1; // меч
+    this.playerDagger = 0; // кинжавл игрока
     this.playerPistol = 1; // пистолет
-    this.playerMoney = 15; // деньги
-    this.playerGod = true; // обращение к богу
+    this.playerRifle = 0; // аркебуза
+    this.playerAmmo = 0; // патроны игрока
+
+    this.removeSavedGames(); // удаляем сохранение
   }
 
   // получить значение параметра по названию

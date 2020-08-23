@@ -9899,7 +9899,13 @@
           "strength": 1
         },
         {
+          "if": "!food",
           "strength": -3
+        },
+        {
+          "if": "food",
+          "strength": 0,
+          "food": -1
         }
       ],
       "step": [
