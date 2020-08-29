@@ -98,7 +98,8 @@
           {
             "name": "ВТОРОЙ ВСАДНИК",
             "agility": 8,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/001.png"
           }
         ]
       },
@@ -119,12 +120,14 @@
           {
             "name": "ПЕРВЫЙ СЛУГА",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/002.png"
           },
           {
             "name": "ВТОРОЙ СЛУГА",
             "agility": 6,
-            "strength": 7
+            "strength": 7,
+            "image": "/images/enemy/003.png"
           }
         ]
       },
@@ -485,7 +488,8 @@
           {
             "name": "ДВОРЯНИН",
             "agility": 8,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/004.png"
           }
         ]
       },
@@ -664,7 +668,8 @@
           {
             "name": "ЧЕРНАЯ ФИГУРА",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/005.png"
           }
         ]
       },
@@ -733,7 +738,8 @@
           {
             "name": "ПРОХОЖИЙ",
             "agility": 8,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/006.png"
           }
         ]
       },
@@ -923,7 +929,8 @@
           {
             "name": "ХОЗЯИН ДОМА",
             "agility": 7,
-            "strength": 9
+            "strength": 9,
+            "image": "/images/enemy/007.png"
           }
         ]
       },
@@ -1117,7 +1124,8 @@
           {
             "name": "ЛОДОЧНИК",
             "agility": 5,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/008.png"
           }
         ]
       },
@@ -1236,12 +1244,14 @@
           {
             "name": "ПЕРВЫЙ ЛИГИСТ",
             "agility": 9,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/009.png"
           },
           {
             "name": "ВТОРОЙ ЛИГИСТ",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/010.png"
           }
         ]
       },
@@ -1702,7 +1712,8 @@
           {
             "name": "ВТОРОЙ ВСАДНИК",
             "agility": 6,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/011.png"
           }
         ]
       },
@@ -1784,12 +1795,14 @@
           {
             "name": "ПЕРВЫЙ ГРАБИТЕЛЬ",
             "agility": 7,
-            "strength": 9
+            "strength": 9,
+            "image": "/images/enemy/012.png"
           },
           {
             "name": "ВТОРОЙ ГРАБИТЕЛЬ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/013.png"
           }
         ]
       },
@@ -1897,7 +1910,8 @@
           {
             "name": "ТЮРЕМЩИК",
             "agility": 9,
-            "strength": 6
+            "strength": 6,
+            "image": "/images/enemy/014.png"
           }
         ]
       },
@@ -3003,7 +3017,8 @@
           {
             "name": "ОХРАННИК",
             "agility": 7,
-            "strength": 9
+            "strength": 9,
+            "image": "/images/enemy/015.png"
           }
         ]
       },
@@ -3404,7 +3419,8 @@
           {
             "name": "ПЕРВЫЙ ВСАДНИК",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/016.png"
           }
         ]
       },
@@ -3461,7 +3477,8 @@
           {
             "name": "ШЕВАЛЬЕ ДЕ МИШУАР",
             "agility": 9,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/017.png"
           }
         ]
       },
@@ -3604,7 +3621,8 @@
           {
             "name": "ХОЗЯИН ДОМА",
             "agility": 8,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/018.png"
           }
         ]
       },
@@ -3623,17 +3641,20 @@
           {
             "name": "ПЕРВЫЙ БРОДЯГА",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/019.png"
           },
           {
             "name": "ВТОРОЙ БРОДЯГА",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/020.png"
           },
           {
             "name": "ТРЕТИЙ БРОДЯГА",
             "agility": 7,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/021.png"
           }
         ]
       },
@@ -3828,7 +3849,8 @@
           {
             "name": "НЕИЗВЕСТНЫЙ",
             "agility": 11,
-            "strength": 12
+            "strength": 12,
+            "image": "/images/enemy/022.png"
           }
         ]
       },
@@ -3876,7 +3898,8 @@
           {
             "name": "ВЕПРЬ",
             "agility": 10,
-            "strength": 12
+            "strength": 12,
+            "image": "/images/enemy/023.png"
           }
         ]
       },
@@ -3905,7 +3928,8 @@
           {
             "name": "ДВОРЯНИН",
             "agility": 9,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/024.png"
           }
         ]
       },
@@ -3924,12 +3948,14 @@
           {
             "name": "ПЕРВЫЙ ВСАДНИК",
             "agility": 8,
-            "strength": 9
+            "strength": 9,
+            "image": "/images/enemy/025.png"
           },
           {
             "name": "ВТОРОЙ ВСАДНИК",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/026.png"
           }
         ]
       },
@@ -4175,7 +4201,8 @@
           {
             "name": "ЛИГИСТ",
             "agility": 12,
-            "strength": 14
+            "strength": 14,
+            "image": "/images/enemy/027.png"
           }
         ]
       },
@@ -4312,7 +4339,8 @@
           {
             "name": "ЛИГИСТ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/028.png"
           }
         ]
       },
@@ -4678,7 +4706,8 @@
           {
             "name": "ЛИГИСТ",
             "agility": 12,
-            "strength": 14
+            "strength": 14,
+            "image": "/images/enemy/029.png"
           }
         ]
       },
@@ -4788,7 +4817,8 @@
           {
             "name": "ШЕВАЛЬЕ ДЕ БУАЗО",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/030.png"
           }
         ]
       },
@@ -5270,12 +5300,14 @@
           {
             "name": "ПЕРВЫЙ СЛУГА",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/031.png"
           },
           {
             "name": "ВТОРОЙ СЛУГА",
             "agility": 6,
-            "strength": 7
+            "strength": 7,
+            "image": "/images/enemy/032.png"
           }
         ]
       },
@@ -5449,7 +5481,8 @@
           {
             "name": "БРОДЯГА",
             "agility": 8,
-            "strength": 6
+            "strength": 6,
+            "image": "/images/enemy/033.png"
           }
         ]
       },
@@ -5975,7 +6008,8 @@
           {
             "name": "ВТОРОЙ КАВАЛЕРИСТ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/034.png"
           }
         ]
       },
@@ -6048,12 +6082,14 @@
           {
             "name": "ПЕРВЫЙ ЧЕЛОВЕК С ТОПОРОМ",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/035.png"
           },
           {
             "name": "ВТОРОЙ ЧЕЛОВЕК С ТОПОРОМ",
             "agility": 7,
-            "strength": 6
+            "strength": 6,
+            "image": "/images/enemy/036.png"
           }
         ]
       },
@@ -6276,7 +6312,8 @@
           {
             "name": "ЧАСОВОЙ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/037.png"
           }
         ]
       },
@@ -6301,7 +6338,8 @@
           {
             "name": "ШЕВАЛЬЕ ДЕ МИШУАР",
             "agility": 9,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/038.png"
           }
         ]
       },
@@ -6851,12 +6889,14 @@
           {
             "name": "ПЕРВЫЙ СОЛДАТ",
             "agility": 6,
-            "strength": 6
+            "strength": 6,
+            "image": "/images/enemy/039.png"
           },
           {
             "name": "ВТОРОЙ СОЛДАТ",
             "agility": 7,
-            "strength": 6
+            "strength": 6,
+            "image": "/images/enemy/041.png"
           }
         ]
       },
@@ -6964,12 +7004,14 @@
           {
             "name": "ПЕРВЫЙ МОНАХ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/042.png"
           },
           {
             "name": "ВТОРОЙ МОНАХ",
             "agility": 7,
-            "strength": 7
+            "strength": 7,
+            "image": "/images/enemy/043.png"
           }
         ]
       },
@@ -7154,12 +7196,14 @@
           {
             "name": "ВОЛК",
             "agility": 7,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/044.png"
           },
           {
             "name": "ВОЛЧИЦА",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/045.png"
           }
         ]
       },
@@ -7391,7 +7435,8 @@
           {
             "name": "ГЕРЦОГ ДЕ ЛАВАЛЕТТ",
             "agility": 6,
-            "strength": 14
+            "strength": 14,
+            "image": "/images/enemy/046.png"
           }
         ]
       },
@@ -7836,7 +7881,8 @@
           {
             "name": "ГРАФ МОРТОН",
             "agility": 10,
-            "strength": 12
+            "strength": 12,
+            "image": "/images/enemy/047.png"
           }
         ]
       },
@@ -8081,12 +8127,14 @@
           {
             "name": "ПЕРВЫЙ УБИЙЦА",
             "agility": 9,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/048.png"
           },
           {
             "name": "ВТОРОЙ УБИЙЦА",
             "agility": 8,
-            "strength": 7
+            "strength": 7,
+            "image": "/images/enemy/049.png"
           }
         ]
       },
@@ -8176,12 +8224,14 @@
           {
             "name": "ПЕРВЫЙ СОЛДАТ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/050.png"
           },
           {
             "name": "ВТОРОЙ СОЛДАТ",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/051.png"
           }
         ]
       },
@@ -8215,7 +8265,8 @@
           {
             "name": "ГРАФ МОРТОН",
             "agility": 10,
-            "strength": 12
+            "strength": 12,
+            "image": "/images/enemy/052.png"
           }
         ]
       },
@@ -8282,17 +8333,20 @@
           {
             "name": "ПЕРВЫЙ ОБОРВАНЕЦ",
             "agility": 6,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/053.png"
           },
           {
             "name": "ВТОРОЙ ОБОРВАНЕЦ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/054.png"
           },
           {
             "name": "ТРЕТИЙ ОБОРВАНЕЦ",
             "agility": 7,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/055.png"
           }
         ]
       },
@@ -8420,12 +8474,14 @@
           {
             "name": "ПЕРВЫЙ КАВАЛЕРИСТ",
             "agility": 7,
-            "strength": 9
+            "strength": 9,
+            "image": "/images/enemy/056.png"
           },
           {
             "name": "ВТОРОЙ КАВАЛЕРИСТ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/057.png"
           }
         ]
       },
@@ -8444,7 +8500,8 @@
           {
             "name": "СОЛДАТ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/058.png"
           }
         ]
       },
@@ -8514,7 +8571,8 @@
           {
             "name": "ВТОРОЙ ВСАДНИК",
             "agility": 8,
-            "strength": 10
+            "strength": 10,
+            "image": "/images/enemy/059.png"
           }
         ]
       },
@@ -9133,7 +9191,8 @@
           {
             "name": "МОЛОДОЙ ДВОРЯНИН",
             "agility": 8,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/060.png"
           }
         ],
         "block": "dice === 3"
@@ -9736,7 +9795,8 @@
           {
             "name": "ГОНЕЦ",
             "agility": 7,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/061.png"
           }
         ]
       },
@@ -10336,7 +10396,8 @@
           {
             "name": "ПОСЛАНЕЦ ГУБЕРНАТОРА",
             "agility": 9,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/062.png"
           }
         ]
       },
@@ -10409,7 +10470,8 @@
           {
             "name": "МЕДВЕДЬ",
             "agility": 10,
-            "strength": 8
+            "strength": 8,
+            "image": "/images/enemy/063.png"
           }
         ]
       },

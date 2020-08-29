@@ -15,6 +15,12 @@ const Fight = inject("gameStore")(
               <div className="fight-item__name">
                 {enemyC.name} - Лв: {enemyC.agility} - Сл: {enemyC.strength}
               </div>
+              <div className="fight-item__image">
+                <img
+                  src={process.env.PUBLIC_URL + enemyC.image}
+                  alt={enemyC.name}
+                />
+              </div>
               <div className="store-item__count">
                 <button
                   disabled={enemyC.strength <= 0}
