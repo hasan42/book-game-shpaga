@@ -31,6 +31,8 @@ class GameStore {
   playerRifle = 0; // аркебуза
   playerAmmo = 0; // патроны игрока
 
+  playerHeroImage = "/images/hero/hero.png";
+
   roadMapList = [];
 
   constructor() {

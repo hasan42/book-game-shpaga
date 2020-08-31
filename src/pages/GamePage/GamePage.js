@@ -7,6 +7,7 @@ import adminStore from "../../stores/adminStore";
 import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
 import Fight from "../../ui/Fight/Fight";
+import Background from "../../ui/Background/Background";
 import "./GamePage.css";
 
 const GamePage = inject(
@@ -88,11 +89,13 @@ const GamePage = inject(
 
           <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
 
-          {text.store && <Store type={text.storeType} store={text.store} />}
+          <Background image={text.image}>
+            {text.fight && (
+              <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
+            )}
+          </Background>
 
-          {text.fight && (
-            <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
-          )}
+          {text.store && <Store type={text.storeType} store={text.store} />}
 
           <ul
             className={
