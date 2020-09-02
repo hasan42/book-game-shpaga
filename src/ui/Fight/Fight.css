@@ -5,6 +5,9 @@
   align-items: flex-end;
   height: 100%;
 }
+.fight-item {
+  position: relative;
+}
 .fight-item__image {
   width: 50px;
   height: 50px;
@@ -14,4 +17,24 @@
 }
 .fight__enemy {
   display: flex;
+}
+
+.fight__button {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: url("sworda.png"), auto;
+}
+.fight__button:disabled {
+  cursor: not-allowed;
+  background-image: url("death.png");
+  background-size: 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
 }

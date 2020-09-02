@@ -30,25 +30,24 @@ const Fight = inject("gameStore")(
                     full: enemyC.maxStrength,
                   }}
                 />
-                <div className="store-item__count">
-                  <button
-                    disabled={enemyC.strength <= 0}
-                    onClick={() => {
-                      let attackDmg = gameStore.attack(enemyFight, idx);
-                      enemyFight[idx].strength =
-                        enemyFight[idx].strength - attackDmg;
+                <button
+                  className="fight__button"
+                  disabled={enemyC.strength <= 0}
+                  onClick={() => {
+                    let attackDmg = gameStore.attack(enemyFight, idx);
+                    enemyFight[idx].strength =
+                      enemyFight[idx].strength - attackDmg;
 
-                      if (
-                        enemyFight.filter((en) => en.strength <= 0).length ===
-                        enemyFight.length
-                      ) {
-                        onFightEnd();
-                      }
-                    }}
-                  >
-                    Аттаковать
-                  </button>
-                </div>
+                    if (
+                      enemyFight.filter((en) => en.strength <= 0).length ===
+                      enemyFight.length
+                    ) {
+                      onFightEnd();
+                    }
+                  }}
+                >
+                  Аттаковать
+                </button>
               </div>
             );
           })}
