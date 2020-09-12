@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import "./HomePage.css";
+import Button from "../../ui/Button/Button";
 
 const HomePage = inject("gameStore")(
   observer(({ GameStore }) => {
@@ -11,30 +12,25 @@ const HomePage = inject("gameStore")(
     return (
       <>
         <div className="home-page">
-          <ul>
-            <li>
-              <button
-                onClick={() => {
-                  gameStore.removeSavedGames();
-                  history.push(`/character`);
-                }}
-              >
-                Начать новую игру
-              </button>
-            </li>
-            {gameStore.canLoadSaveGame && (
-              <li>
-                <button
-                  onClick={() => {
-                    gameStore.loadGame();
-                    history.push(`/game/${gameStore.currentStep}`);
-                  }}
-                >
-                  Загрузить игру
-                </button>
-              </li>
-            )}
-          </ul>
+          <Button
+            image="new"
+            onClick={() => {
+              gameStore.removeSavedGames();
+              history.push(`/character`);
+            }}
+          >
+            Начать новую игру
+          </Button>
+          {gameStore.canLoadSaveGame && (
+            <Button
+              onClick={() => {
+                gameStore.loadGame();
+                history.push(`/game/${gameStore.currentStep}`);
+              }}
+            >
+              Загрузить игру
+            </Button>
+          )}
         </div>
       </>
     );

@@ -4,6 +4,7 @@ import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import "./CreateCharacter.css";
 import Special from "../../ui/Special/Special";
+import Button from "../../ui/Button/Button";
 
 const CreateCharacter = inject("gameStore")(
   observer(({ GameStore }) => {
@@ -26,20 +27,20 @@ const CreateCharacter = inject("gameStore")(
               <li>Сила: {gameStore.playerStrength}</li>
               <li>Спецсила: {gameStore.playerSpecial}</li>
             </ul>
-            <button onClick={() => gameStore.calculatePlayerStat()}>
+            <Button onClick={() => gameStore.calculatePlayerStat()}>
               Попробовать еще раз
-            </button>
+            </Button>
           </div>
         </div>
         <div>
-          <button
+          <Button
             onClick={() => {
               history.push(`/intro`);
             }}
             disabled={disabledButton}
           >
             Продолжить
-          </button>
+          </Button>
         </div>
       </>
     );
