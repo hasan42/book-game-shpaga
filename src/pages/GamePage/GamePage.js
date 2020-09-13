@@ -23,6 +23,7 @@ const GamePage = inject(
 
     const [disabledSteps, setDisabledSteps] = useState(false);
     const [luckStep, setLuckStep] = useState(null);
+    const [gameTitle, setGameTitle] = useState("Начало путешествия");
 
     useEffect(() => {
       if (text && text.effect) {
@@ -71,6 +72,11 @@ const GamePage = inject(
       setDisabledSteps(false);
     };
 
+    const onClickStepToHandle = (to, title) => {
+      setGameTitle(title);
+      history.push(`/game/${to}`);
+    };
+
     return text ? (
       <div>
         <div>
@@ -94,7 +100,7 @@ const GamePage = inject(
         <CharacterInfo />
         <div className="game">
           <div className="game-title">
-            <h1>GamePage {text.id}</h1>
+            <h1>{gameTitle}</h1>
           </div>
 
           <div className="game-image">
@@ -125,8 +131,9 @@ const GamePage = inject(
                           luckStep ? "game-steps_inactive" : "game-steps_active"
                         }
                         key={step.to}
+                        onClick={() => onClickStepToHandle(step.to, step.text)}
                       >
-                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                        {step.text}
                       </li>
                     );
                   }
@@ -139,8 +146,9 @@ const GamePage = inject(
                             : "game-steps_active"
                         }
                         key={step.to}
+                        onClick={() => onClickStepToHandle(step.to, step.text)}
                       >
-                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                        {step.text}
                       </li>
                     );
                   }
@@ -153,8 +161,9 @@ const GamePage = inject(
                             : "game-steps_inactive"
                         }
                         key={step.to}
+                        onClick={() => onClickStepToHandle(step.to, step.text)}
                       >
-                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                        {step.text}
                       </li>
                     );
                   }
@@ -167,8 +176,9 @@ const GamePage = inject(
                             : "game-steps_active"
                         }
                         key={step.to}
+                        onClick={() => onClickStepToHandle(step.to, step.text)}
                       >
-                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                        {step.text}
                       </li>
                     );
                   }
@@ -194,8 +204,11 @@ const GamePage = inject(
                   );
                 } else {
                   return (
-                    <li key={step.to}>
-                      <Link to={"/game/" + step.to}>{step.text}</Link>
+                    <li
+                      key={step.to}
+                      onClick={() => onClickStepToHandle(step.to, step.text)}
+                    >
+                      {step.text}
                     </li>
                   );
                 }
