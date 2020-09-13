@@ -15,17 +15,23 @@
     background-color: #542700;
     background-size: 190px;
     color: #f1e9e4;
-    font-size: 24px;
+    font-size: 18px;
+    // font-size: 24px;
     border: 4px #353535;
     border-style: outset;
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 
 .button-image {
+  // display: inline-block;
+  display: none;
   position: absolute;
   left: 7px;
   top: calc(50% - 16px);
-  display: inline-block;
   width: 50px;
   height: 50px;
   width: 30px;

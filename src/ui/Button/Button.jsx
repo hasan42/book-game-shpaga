@@ -22,7 +22,10 @@ class Button extends Component {
 
     return (
       <div className="button">
-        <button onClick={(event) => this.props.onClick(event)}>
+        <button
+          onClick={(event) => this.props.onClick(event)}
+          disabled={this.props.disabled}
+        >
           {this.props.image && (
             <span
               className="button-image"

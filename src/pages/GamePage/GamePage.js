@@ -8,7 +8,7 @@ import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
 import Store from "../../ui/Store/Store";
 import Fight from "../../ui/Fight/Fight";
 import Background from "../../ui/Background/Background";
-import "./GamePage.css";
+import "./GamePage.scss";
 
 const GamePage = inject(
   "gameStore",
@@ -76,9 +76,7 @@ const GamePage = inject(
         <div>
           <button onClick={() => gameStore.saveGame()}>Сохранить игру</button>
         </div>
-        <CharacterInfo />
-        <div className="game">
-          <h1>GamePage {text.id}</h1>
+        <div className="admin-panel">
           {adminStore.isAdmin && (
             <div>
               <button onClick={() => gameStore.decrease("strength", 2)}>
@@ -86,105 +84,118 @@ const GamePage = inject(
               </button>
             </div>
           )}
+        </div>
+        <CharacterInfo />
+        <div className="game">
+          <div className="game-title">
+            <h1>GamePage {text.id}</h1>
+          </div>
 
-          <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
+          <div className="game-image">
+            <Background image={text.image}>
+              {text.fight && (
+                <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
+              )}
+              {text.store && <Store type={text.storeType} store={text.store} />}
+            </Background>
+          </div>
 
-          <Background image={text.image}>
-            {text.fight && (
-              <Fight onFightEnd={onFightEndHandle} fight={text.fight} />
-            )}
-          </Background>
+          <div className="game-text">
+            <div dangerouslySetInnerHTML={{ __html: text.text }}></div>
+          </div>
 
-          {text.store && <Store type={text.storeType} store={text.store} />}
-
-          <ul
-            className={
-              disabledSteps ? "game-steps_inactive" : "game-steps_active"
-            }
-          >
-            {text.step.map((step, idx) => {
-              if (step.if) {
-                if (step.if === "luck") {
-                  return (
-                    <li
-                      className={
-                        luckStep ? "game-steps_inactive" : "game-steps_active"
-                      }
-                      key={step.to}
-                    >
-                      <Link to={"/game/" + step.to}>{step.text}</Link>
-                    </li>
-                  );
-                }
-                if (step.if === "!luck") {
-                  return (
-                    <li
-                      className={
-                        !luckStep ? "game-steps_inactive" : "game-steps_active"
-                      }
-                      key={step.to}
-                    >
-                      <Link to={"/game/" + step.to}>{step.text}</Link>
-                    </li>
-                  );
-                }
-                if (step.if === "swimming") {
-                  return (
-                    <li
-                      className={
-                        gameStore.playerSpecial === "swimming"
-                          ? "game-steps_active"
-                          : "game-steps_inactive"
-                      }
-                      key={step.to}
-                    >
-                      <Link to={"/game/" + step.to}>{step.text}</Link>
-                    </li>
-                  );
-                }
-                if (step.if === "!swimming") {
-                  return (
-                    <li
-                      className={
-                        gameStore.playerSpecial === "swimming"
-                          ? "game-steps_inactive"
-                          : "game-steps_active"
-                      }
-                      key={step.to}
-                    >
-                      <Link to={"/game/" + step.to}>{step.text}</Link>
-                    </li>
-                  );
-                }
-              } else if (step.type === "gameOver") {
-                return (
-                  <>
-                    <li key={`gameOver${idx}`}>
-                      <Link to={"/"}>{step.text}</Link>
-                    </li>
-                    {gameStore.canLoadSaveGame && (
-                      <li key={`gameOverLoad${idx}`}>
-                        <button
-                          onClick={() => {
-                            gameStore.loadGame();
-                            history.push(`/game/${gameStore.currentStep}`);
-                          }}
-                        >
-                          Загрузить игру
-                        </button>
-                      </li>
-                    )}
-                  </>
-                );
-              } else {
-                return (
-                  <li key={step.to}>
-                    <Link to={"/game/" + step.to}>{step.text}</Link>
-                  </li>
-                );
+          <div className="game-steps">
+            <ul
+              className={
+                disabledSteps ? "game-steps_inactive" : "game-steps_active"
               }
-            })}
-          </ul>
+            >
+              {text.step.map((step, idx) => {
+                if (step.if) {
+                  if (step.if === "luck") {
+                    return (
+                      <li
+                        className={
+                          luckStep ? "game-steps_inactive" : "game-steps_active"
+                        }
+                        key={step.to}
+                      >
+                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                      </li>
+                    );
+                  }
+                  if (step.if === "!luck") {
+                    return (
+                      <li
+                        className={
+                          !luckStep
+                            ? "game-steps_inactive"
+                            : "game-steps_active"
+                        }
+                        key={step.to}
+                      >
+                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                      </li>
+                    );
+                  }
+                  if (step.if === "swimming") {
+                    return (
+                      <li
+                        className={
+                          gameStore.playerSpecial === "swimming"
+                            ? "game-steps_active"
+                            : "game-steps_inactive"
+                        }
+                        key={step.to}
+                      >
+                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                      </li>
+                    );
+                  }
+                  if (step.if === "!swimming") {
+                    return (
+                      <li
+                        className={
+                          gameStore.playerSpecial === "swimming"
+                            ? "game-steps_inactive"
+                            : "game-steps_active"
+                        }
+                        key={step.to}
+                      >
+                        <Link to={"/game/" + step.to}>{step.text}</Link>
+                      </li>
+                    );
+                  }
+                } else if (step.type === "gameOver") {
+                  return (
+                    <>
+                      <li key={`gameOver${idx}`}>
+                        <Link to={"/"}>{step.text}</Link>
+                      </li>
+                      {gameStore.canLoadSaveGame && (
+                        <li key={`gameOverLoad${idx}`}>
+                          <button
+                            onClick={() => {
+                              gameStore.loadGame();
+                              history.push(`/game/${gameStore.currentStep}`);
+                            }}
+                          >
+                            Загрузить игру
+                          </button>
+                        </li>
+                      )}
+                    </>
+                  );
+                } else {
+                  return (
+                    <li key={step.to}>
+                      <Link to={"/game/" + step.to}>{step.text}</Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     ) : (
