@@ -78,11 +78,17 @@ const GamePage = inject(
         </div>
         <div className="admin-panel">
           {adminStore.isAdmin && (
-            <div>
-              <button onClick={() => gameStore.decrease("strength", 2)}>
-                deth
-              </button>
-            </div>
+            <>
+              <div>
+                {gameStore.playerStrength}/{gameStore.playerStrengthMax}{" "}
+                {gameStore.playerAgilityMax}
+              </div>
+              <div>
+                <button onClick={() => gameStore.decrease("strength", 2)}>
+                  deth
+                </button>
+              </div>
+            </>
           )}
         </div>
         <CharacterInfo />

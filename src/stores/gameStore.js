@@ -12,6 +12,9 @@ class GameStore {
   specialList = []; // список возможных специальных сил
   ifHonorGoesZero = 150; // если честь упала до нуля
 
+  strengthStatList = []; // список дя генерации значения силы персонажа
+  agilityStatList = []; // список дя генерации значения ловкости персонажа
+
   playerAgilityMax = 0; // максимальная ловкость
   playerStrengthMax = 0; // максимальная сила
   playerAgility = 0; // текущая ловкость
@@ -70,59 +73,13 @@ class GameStore {
 
   // расчет характеристик игрока
   calculatePlayerStat() {
-    switch (this.turnDice()) {
-      case 1:
-        this.playerAgilityMax = 12;
-        this.playerAgility = 12;
-        break;
-      case 2:
-        this.playerAgilityMax = 8;
-        this.playerAgility = 8;
-        break;
-      case 3:
-        this.playerAgilityMax = 10;
-        this.playerAgility = 10;
-        break;
-      case 4:
-        this.playerAgilityMax = 7;
-        this.playerAgility = 7;
-        break;
-      case 5:
-        this.playerAgilityMax = 9;
-        this.playerAgility = 9;
-        break;
-      default:
-        this.playerAgilityMax = 11;
-        this.playerAgility = 11;
-        break;
-    }
+    let strengthDice = this.turnDice();
+    this.playerStrengthMax = this.strengthStatList[strengthDice - 1];
+    this.playerStrength = this.strengthStatList[strengthDice - 1];
 
-    switch (this.turnDice()) {
-      case 1:
-        this.playerStrengthMax = 22;
-        this.playerStrength = 22;
-        break;
-      case 2:
-        this.playerStrengthMax = 18;
-        this.playerStrength = 18;
-        break;
-      case 3:
-        this.playerStrengthMax = 14;
-        this.playerStrength = 14;
-        break;
-      case 4:
-        this.playerStrengthMax = 24;
-        this.playerStrength = 24;
-        break;
-      case 5:
-        this.playerStrengthMax = 16;
-        this.playerStrength = 16;
-        break;
-      default:
-        this.playerStrengthMax = 20;
-        this.playerStrength = 20;
-        break;
-    }
+    let agilityDice = this.turnDice();
+    this.playerAgilityMax = this.agilityStatList[agilityDice - 1];
+    this.playerAgility = this.agilityStatList[agilityDice - 1];
   }
 
   setSpecial(spec) {
@@ -399,6 +356,12 @@ autorun(() => {
       }
       if (response.data.special) {
         gameStore.specialList = response.data.special;
+      }
+      if (response.data.charStatStrength) {
+        gameStore.strengthStatList = response.data.charStatStrength;
+      }
+      if (response.data.charStatAgility) {
+        gameStore.agilityStatList = response.data.charStatAgility;
       }
     })
     .catch((error) => {
