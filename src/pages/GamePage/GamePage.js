@@ -77,6 +77,26 @@ const GamePage = inject(
       history.push(`/game/${to}`);
     };
 
+    const setDisabledStepByIf = (ifStep) => {
+      if (ifStep === "luck") {
+        return luckStep ? "game-steps_inactive" : "game-steps_active";
+      }
+      if (ifStep === "!luck") {
+        return !luckStep ? "game-steps_inactive" : "game-steps_active";
+      }
+      if (ifStep === "swimming") {
+        return gameStore.playerSpecial === "swimming"
+          ? "game-steps_active"
+          : "game-steps_inactive";
+      }
+      if (ifStep === "!swimming") {
+        return gameStore.playerSpecial === "swimming"
+          ? "game-steps_inactive"
+          : "game-steps_active";
+      }
+      return "game-steps_active";
+    };
+
     return text ? (
       <div>
         <div>
@@ -124,64 +144,15 @@ const GamePage = inject(
             >
               {text.step.map((step, idx) => {
                 if (step.if) {
-                  if (step.if === "luck") {
-                    return (
-                      <li
-                        className={
-                          luckStep ? "game-steps_inactive" : "game-steps_active"
-                        }
-                        key={step.to}
-                        onClick={() => onClickStepToHandle(step.to, step.text)}
-                      >
-                        {step.text}
-                      </li>
-                    );
-                  }
-                  if (step.if === "!luck") {
-                    return (
-                      <li
-                        className={
-                          !luckStep
-                            ? "game-steps_inactive"
-                            : "game-steps_active"
-                        }
-                        key={step.to}
-                        onClick={() => onClickStepToHandle(step.to, step.text)}
-                      >
-                        {step.text}
-                      </li>
-                    );
-                  }
-                  if (step.if === "swimming") {
-                    return (
-                      <li
-                        className={
-                          gameStore.playerSpecial === "swimming"
-                            ? "game-steps_active"
-                            : "game-steps_inactive"
-                        }
-                        key={step.to}
-                        onClick={() => onClickStepToHandle(step.to, step.text)}
-                      >
-                        {step.text}
-                      </li>
-                    );
-                  }
-                  if (step.if === "!swimming") {
-                    return (
-                      <li
-                        className={
-                          gameStore.playerSpecial === "swimming"
-                            ? "game-steps_inactive"
-                            : "game-steps_active"
-                        }
-                        key={step.to}
-                        onClick={() => onClickStepToHandle(step.to, step.text)}
-                      >
-                        {step.text}
-                      </li>
-                    );
-                  }
+                  return (
+                    <li
+                      key={step.to}
+                      className={setDisabledStepByIf(step.if)}
+                      onClick={() => onClickStepToHandle(step.to, step.text)}
+                    >
+                      {step.text}
+                    </li>
+                  );
                 } else if (step.type === "gameOver") {
                   return (
                     <>
