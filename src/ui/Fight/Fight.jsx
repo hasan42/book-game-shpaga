@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
 import "./Fight.css";
@@ -9,9 +9,24 @@ import EnemyImage from "../EnemyImage/EnemyImage";
 const Fight = inject("gameStore")(
   observer(({ GameStore, fight, onFightEnd }) => {
     let enemyFight = fight.enemy;
+
     enemyFight.forEach((el) => {
       if (!el.maxStrength) el.maxStrength = el.strength;
     });
+
+    const [disabledEnemyStrength, setDisabledEnemyStrength] = useState(0);
+
+    const fightHasWinCondition = () => {
+      return fight.win && fight.win !== "kill" ? false : true;
+    };
+
+    useEffect(() => {
+      if (fightHasWinCondition) {
+        if (fight.win === "strength") {
+          setDisabledEnemyStrength(2);
+        }
+      }
+    }, []);
 
     return (
       <div className="fight">
@@ -32,15 +47,20 @@ const Fight = inject("gameStore")(
                 />
                 <button
                   className="fight__button"
-                  disabled={enemyC.strength <= 0}
+                  disabled={enemyC.strength <= disabledEnemyStrength}
                   onClick={() => {
-                    let attackDmg = gameStore.attack(enemyFight, idx);
+                    let attackDmg = gameStore.attack(
+                      enemyFight,
+                      idx,
+                      disabledEnemyStrength
+                    );
                     enemyFight[idx].strength =
                       enemyFight[idx].strength - attackDmg;
 
                     if (
-                      enemyFight.filter((en) => en.strength <= 0).length ===
-                      enemyFight.length
+                      enemyFight.filter(
+                        (en) => en.strength <= disabledEnemyStrength
+                      ).length === enemyFight.length
                     ) {
                       onFightEnd();
                     }

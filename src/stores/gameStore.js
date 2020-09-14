@@ -190,7 +190,7 @@ class GameStore {
   store() {}
 
   // атака. список врагов, ид атакующего
-  attack(enemyList, enemyAttacker) {
+  attack(enemyList, enemyAttacker, disabledEnemyStrength) {
     this.fightRound += 1; // прибавляем номер раунда
 
     let resultFight = 0; // результат схватки
@@ -198,7 +198,7 @@ class GameStore {
     enemyList.forEach((en, idx) => {
       const enemyHit = this.calculateHit(en.agility); // расчет силы удара
 
-      if (en.strength > 0) {
+      if (en.strength > disabledEnemyStrength) {
         // если враг не побежден
         if (idx !== enemyAttacker) {
           // НЕ цель атаки
