@@ -9,6 +9,8 @@ class GameStore {
   listSteps = []; // список шагов
   historySteps = []; // история шагов
 
+  fightRound = 0; // раунд битвы
+
   specialList = []; // список возможных специальных сил
   ifHonorGoesZero = 150; // если честь упала до нуля
 
@@ -34,7 +36,7 @@ class GameStore {
   playerRifle = 0; // аркебуза
   playerAmmo = 0; // патроны игрока
 
-  playerHeroImage = "/images/hero/hero.png";
+  playerHeroImage = "/images/hero/hero.png"; // картинка персонажа
 
   roadMapList = [];
 
@@ -189,6 +191,8 @@ class GameStore {
 
   // атака. список врагов, ид атакующего
   attack(enemyList, enemyAttacker) {
+    this.fightRound += 1; // прибавляем номер раунда
+
     let resultFight = 0; // результат схватки
     // console.log(enemyList);
     enemyList.forEach((en, idx) => {
@@ -303,6 +307,8 @@ decorate(GameStore, {
   historySteps: observable,
 
   introText: observable,
+
+  fightRound: observable,
 
   calculatePlayerStat: action,
   playerAgility: observable,

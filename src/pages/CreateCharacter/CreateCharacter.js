@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import gameStore from "../../stores/gameStore";
@@ -13,6 +13,10 @@ const CreateCharacter = inject("gameStore")(
     const onSelectSpecHandle = () => {
       setDisabledButton(false);
     };
+
+    useEffect(() => {
+      gameStore.calculatePlayerStat();
+    }, []);
 
     return (
       <>

@@ -25,6 +25,11 @@ const GamePage = inject(
     const [luckStep, setLuckStep] = useState(null);
     const [gameTitle, setGameTitle] = useState("Начало путешествия");
 
+    const onFightStart = () => {
+      gameStore.fightRound = 0;
+      setDisabledSteps(true);
+    };
+
     useEffect(() => {
       if (text && text.effect) {
         let useFood = false;
@@ -57,7 +62,7 @@ const GamePage = inject(
     useMemo(() => {
       if (text) {
         if (text.fight) {
-          setDisabledSteps(true);
+          onFightStart();
         }
         if (text.step.find((step) => step.if)) {
           if (text.step.find((step) => step.if === "luck")) {
@@ -107,7 +112,7 @@ const GamePage = inject(
             <>
               <div>
                 {gameStore.playerStrength}/{gameStore.playerStrengthMax}{" "}
-                {gameStore.playerAgilityMax}
+                {gameStore.playerAgilityMax} {gameStore.fightRound}
               </div>
               <div>
                 <button onClick={() => gameStore.decrease("strength", 2)}>
