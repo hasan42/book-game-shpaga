@@ -119,6 +119,9 @@ const GamePage = inject(
                   deth
                 </button>
               </div>
+              <div>
+                <button onClick={() => adminStore.showText()}>showText</button>
+              </div>
             </>
           )}
         </div>

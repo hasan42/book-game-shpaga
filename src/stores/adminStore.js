@@ -1,3 +1,4 @@
+import notifyStore from "./notifyStore";
 import { observable, autorun, action, decorate } from "mobx";
 
 class AdminStore {
@@ -13,7 +14,14 @@ class AdminStore {
     this.isAdmin = false;
   }
 
-  constructor() {}
+  showText() {
+    console.log(notifyStore);
+    notifyStore.message = "qweqweqwe";
+  }
+
+  // constructor(NotifyStore) {
+  //   this.notifyStore = NotifyStore;
+  // }
 }
 decorate(AdminStore, {
   isAdmin: observable,

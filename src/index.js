@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import gameStore from "./stores/gameStore";
 import adminStore from "./stores/adminStore";
+import rootStore from "./stores/rootStore";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
@@ -15,7 +16,7 @@ const stores = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider {...stores}>
+    <Provider {...rootStore}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
