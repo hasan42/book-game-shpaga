@@ -1,6 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import gameStore from "../../stores/gameStore";
+import gameStore from "@stores/gameStore";
 import "./Background.css";
 
 const Background = inject("gameStore")(

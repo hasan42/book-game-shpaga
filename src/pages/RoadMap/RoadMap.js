@@ -1,5 +1,5 @@
 import React from "react";
-import RoadMapItem from "../../ui/RoadMapItem/RoadMapItem";
+import RoadMapItem from "@ui/RoadMapItem/RoadMapItem";
 import "./RoadMap.css";
 
 const RoadMap = () => {

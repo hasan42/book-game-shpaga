@@ -1,7 +1,7 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import HealthBar from "../HealthBar/HealthBar";
-import gameStore from "../../stores/gameStore";
+import gameStore from "@stores/gameStore";
 import "./HeroImage.css";
 
 const HeroImage = inject("gameStore")(

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { observer, inject } from "mobx-react";
-import gameStore from "../../stores/gameStore";
+import gameStore from "@stores/gameStore";
 import "./Fight.css";
 
 import HeroImage from "../HeroImage/HeroImage";

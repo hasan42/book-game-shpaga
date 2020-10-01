@@ -2,12 +2,12 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import { keysIn, valuesIn } from "lodash";
-import gameStore from "../../stores/gameStore";
-import adminStore from "../../stores/adminStore";
-import CharacterInfo from "../../ui/CharacterInfo/CharacterInfo";
-import Store from "../../ui/Store/Store";
-import Fight from "../../ui/Fight/Fight";
-import Background from "../../ui/Background/Background";
+import gameStore from "@stores/gameStore";
+import adminStore from "@stores/adminStore";
+import CharacterInfo from "@ui/CharacterInfo/CharacterInfo";
+import Store from "@ui/Store/Store";
+import Fight from "@ui/Fight/Fight";
+import Background from "@ui/Background/Background";
 import "./GamePage.scss";
 
 const GamePage = inject(

@@ -1,5 +1,5 @@
 import React from "react";
-import gameStore from "../../stores/gameStore";
+import gameStore from "@stores/gameStore";
 import RoadMapList from "../RoadMapList/RoadMapList";
 
 const RoadMapItem = ({ itemId }) => {

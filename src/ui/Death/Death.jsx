@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
-import gameStore from "../../stores/gameStore";
+import gameStore from "@stores/gameStore";
 import "./Death.css";
 
 const Death = inject("gameStore")(

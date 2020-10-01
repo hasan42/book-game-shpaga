@@ -1,6 +1,6 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import adminStore from "../../stores/adminStore";
+import adminStore from "@stores/adminStore";
 import { Link } from "react-router-dom";
 import "./MainNavigation.css";
 
