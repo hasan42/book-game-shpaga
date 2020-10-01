@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import { useStores } from "@hooks/use-stores";
-import gameStore from "@stores/gameStore";
+import gameStore from "../../stores/gameStore";
 
-const Card = observer(() => {
-  const { gameStore } = useStores();
-  return (
-    <div>
+const Card = inject("gameStore")(
+  observer(({ GameStore }) => {
+    return (
       <div>
-        <p>Game store : </p>
+        <div>
+          <p>Game store : </p>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  })
+);
 
 export default Card;

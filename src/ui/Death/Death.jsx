@@ -1,38 +1,38 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
-import { useStores } from "@hooks/use-stores";
-import gameStore from "@stores/gameStore";
+import gameStore from "../../stores/gameStore";
 import "./Death.css";
 
-const Death = observer(() => {
-  const { gameStore } = useStores();
-  const history = useHistory();
+const Death = inject("gameStore")(
+  observer(({ GameStore }) => {
+    const history = useHistory();
 
-  return (
-    <div className="backdrop">
-      <div className="death">
-        <h2>Вы погибли</h2>
-        <ul>
-          <li>
-            <Link to={"/"}>В главное меню</Link>
-          </li>
-          {gameStore.canLoadSaveGame && (
+    return (
+      <div className="backdrop">
+        <div className="death">
+          <h2>Вы погибли</h2>
+          <ul>
             <li>
-              <button
-                onClick={() => {
-                  gameStore.loadGame();
-                  history.push(`/game/${gameStore.currentStep}`);
-                }}
-              >
-                Загрузить игру
-              </button>
+              <Link to={"/"}>В главное меню</Link>
             </li>
-          )}
-        </ul>
+            {gameStore.canLoadSaveGame && (
+              <li>
+                <button
+                  onClick={() => {
+                    gameStore.loadGame();
+                    history.push(`/game/${gameStore.currentStep}`);
+                  }}
+                >
+                  Загрузить игру
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  })
+);
 
 export default Death;

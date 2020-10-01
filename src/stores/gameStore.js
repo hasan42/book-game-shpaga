@@ -41,36 +41,6 @@ export class GameStore {
   @observable roadMapList = [];
 
   constructor() {
-    this.checkHaveSaveGame();
-    axios
-      .get(process.env.PUBLIC_URL + "/shpaga.json", {
-        dataType: "jsonp",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.data.intro) {
-          this.introText = response.data.intro;
-        }
-        if (response.data.game) {
-          this.listSteps = response.data.game;
-        }
-        if (response.data.special) {
-          this.specialList = response.data.special;
-        }
-        if (response.data.charStatStrength) {
-          this.strengthStatList = response.data.charStatStrength;
-        }
-        if (response.data.charStatAgility) {
-          this.agilityStatList = response.data.charStatAgility;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
     this.createNewGame();
   }
 
@@ -373,37 +343,37 @@ export class GameStore {
 
 // const gameStore = new GameStore();
 
-// autorun(() => {
-//   gameStore.checkHaveSaveGame();
-//   axios
-//     .get(process.env.PUBLIC_URL + "/shpaga.json", {
-//       dataType: "jsonp",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Accept: "application/json",
-//       },
-//     })
-//     .then((response) => {
-//       if (response.data.intro) {
-//         gameStore.introText = response.data.intro;
-//       }
-//       if (response.data.game) {
-//         gameStore.listSteps = response.data.game;
-//       }
-//       if (response.data.special) {
-//         gameStore.specialList = response.data.special;
-//       }
-//       if (response.data.charStatStrength) {
-//         gameStore.strengthStatList = response.data.charStatStrength;
-//       }
-//       if (response.data.charStatAgility) {
-//         gameStore.agilityStatList = response.data.charStatAgility;
-//       }
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
+autorun(() => {
+  gameStore.checkHaveSaveGame();
+  axios
+    .get(process.env.PUBLIC_URL + "/shpaga.json", {
+      dataType: "jsonp",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.data.intro) {
+        gameStore.introText = response.data.intro;
+      }
+      if (response.data.game) {
+        gameStore.listSteps = response.data.game;
+      }
+      if (response.data.special) {
+        gameStore.specialList = response.data.special;
+      }
+      if (response.data.charStatStrength) {
+        gameStore.strengthStatList = response.data.charStatStrength;
+      }
+      if (response.data.charStatAgility) {
+        gameStore.agilityStatList = response.data.charStatAgility;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 // export default gameStore;
 // export { GameStore };

@@ -1,6 +1,5 @@
-// import { notifyStore } from "./notifyStore";
+import notifyStore from "./notifyStore";
 import { observable, autorun, action, decorate } from "mobx";
-import { useStores } from "@hooks/use-stores";
 
 export class AdminStore {
   @observable
@@ -21,14 +20,13 @@ export class AdminStore {
 
   @action
   showText() {
-    console.log(this.notifyStore);
-    this.notifyStore.message = "qweqweqwe";
+    console.log(notifyStore);
+    notifyStore.message = "qweqweqwe";
   }
 
-  constructor(NotifyStore) {
-    const { notifyStore } = useStores();
-    // this.notifyStore = notifyStore;
-  }
+  // constructor(NotifyStore) {
+  //   this.notifyStore = NotifyStore;
+  // }
 }
 // decorate(AdminStore, {
 //   isAdmin: observable,

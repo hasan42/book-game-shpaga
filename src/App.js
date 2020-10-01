@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
-import MainNavigation from "@ui/MainNavigation/MainNavigation";
-import Layout from "@ui/Layout/Layout";
-import IntroPage from "@pages/IntroPage/IntroPage";
-import GamePage from "@pages/GamePage/GamePage";
-import CreateCharacter from "@pages/CreateCharacter/CreateCharacter";
-import HomePage from "@pages/HomePage/HomePage";
-import RoadMap from "@pages/RoadMap/RoadMap";
+import MainNavigation from "./ui/MainNavigation/MainNavigation";
+import Layout from "./ui/Layout/Layout";
+import IntroPage from "./pages/IntroPage/IntroPage";
+import GamePage from "./pages/GamePage/GamePage";
+import CreateCharacter from "./pages/CreateCharacter/CreateCharacter";
+import HomePage from "./pages/HomePage/HomePage";
+import RoadMap from "./pages/RoadMap/RoadMap";
 
 class App extends Component {
   render() {
