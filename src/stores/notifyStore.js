@@ -1,30 +1,30 @@
 import { observable, autorun, action, decorate } from "mobx";
 
-export class NotifyStore {
-  @observable message = "";
-  @observable isVisible = false;
+class NotifyStore {
+  message = "";
+  isVisible = false;
 
-  @action toggle() {
+  toggle() {
     this.isVisible = !this.isVisible;
   }
-  @action show() {
+  show() {
     this.isVisible = true;
   }
-  @action hide() {
+  hide() {
     this.isVisible = false;
   }
 }
-// decorate(NotifyStore, {
-//   message: observable,
-//   isVisible: observable,
-//   toggle: action,
-//   show: action,
-//   hide: action,
-// });
+decorate(NotifyStore, {
+  message: observable,
+  isVisible: observable,
+  toggle: action,
+  show: action,
+  hide: action,
+});
 
-// const notifyStore = new NotifyStore();
+const notifyStore = new NotifyStore();
 
 autorun(() => {});
 
-// export default notifyStore;
-// export { NotifyStore };
+export default notifyStore;
+export { NotifyStore };
