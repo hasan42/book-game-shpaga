@@ -1,26 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "mobx-react";
+// import { Provider } from "mobx-react";
 import "./index.css";
 import App from "./App";
-import gameStore from "./stores/gameStore";
-import adminStore from "./stores/adminStore";
-import rootStore from "./stores/rootStore";
+// import gameStore from "@stores/gameStore";
+// import adminStore from "@stores/adminStore";
+// import rootStore from "@stores/rootStore";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-const stores = {
-  gameStore,
-  adminStore,
-};
+// const stores = {
+//   gameStore,
+//   adminStore,
+// };
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider {...rootStore}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    {/* <Provider {...rootStore}> */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

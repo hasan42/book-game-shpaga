@@ -1,12 +1,13 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import notifyStore from "../../stores/notifyStore";
+import { useStores } from "@hooks/use-stores";
+import notifyStore from "@stores/notifyStore";
 import "./Notify.scss";
 
-const Notify = inject("notifyStore")(
-  observer(({ NotifyStore, msg }) => {
-    return <div className="notify">{notifyStore.message}</div>;
-  })
-);
+const Notify = observer(({ msg }) => {
+  const { notifyStore } = useStores();
+
+  return <div className="notify">{notifyStore.message}</div>;
+});
 
 export default Notify;
