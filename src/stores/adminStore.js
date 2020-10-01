@@ -2,19 +2,19 @@ import notifyStore from "./notifyStore";
 import { observable, autorun, action, decorate } from "mobx";
 
 class AdminStore {
-  isAdmin = false;
+  @observable isAdmin = false;
 
-  toggle() {
+  @action toggle() {
     this.isAdmin = !this.isAdmin;
   }
-  turnOn() {
+  @action turnOn() {
     this.isAdmin = true;
   }
-  turnOff() {
+  @action turnOff() {
     this.isAdmin = false;
   }
 
-  showText() {
+  @action showText() {
     console.log(notifyStore);
     notifyStore.message = "qweqweqwe";
   }
@@ -23,12 +23,6 @@ class AdminStore {
   //   this.notifyStore = NotifyStore;
   // }
 }
-decorate(AdminStore, {
-  isAdmin: observable,
-  toggle: action,
-  turnOn: action,
-  turnOff: action,
-});
 
 const adminStore = new AdminStore();
 
