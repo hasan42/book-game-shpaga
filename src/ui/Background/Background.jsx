@@ -1,7 +1,7 @@
 import React from "react";
 import "./Background.css";
 
-const Background = (children, image) => {
+const Background = ({ children, image }) => {
   const bgImage = process.env.PUBLIC_URL + image;
 
   return (

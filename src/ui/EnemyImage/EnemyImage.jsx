@@ -2,7 +2,7 @@ import React from "react";
 import HealthBar from "../HealthBar/HealthBar";
 import "./EnemyImage.css";
 
-const EnemyImage = (image, name, health) => {
+const EnemyImage = ({ image, name, health }) => {
   const bgImage = process.env.PUBLIC_URL + image;
 
   return (

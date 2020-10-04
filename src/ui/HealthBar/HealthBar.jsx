@@ -1,7 +1,7 @@
 import React from "react";
 import "./HealthBar.css";
 
-const HealthBar = (health) => {
+const HealthBar = ({ health }) => {
   const healthWidth = (health.current * 100) / health.full;
   return (
     <div className="health">
