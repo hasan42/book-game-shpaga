@@ -27,9 +27,9 @@ const CreateCharacter = inject("gameStore")(
           <div className="create-character__item">
             <p>Расчет характеристик</p>
             <ul>
-              <li>Ловкость: {gameStore.playerAgility}</li>
-              <li>Сила: {gameStore.playerStrength}</li>
-              <li>Спецсила: {gameStore.playerSpecial}</li>
+              <li>Ловкость: {gameStore.player.characteristics.agility}</li>
+              <li>Сила: {gameStore.player.characteristics.strength}</li>
+              <li>Спецсила: {gameStore.player.characteristics.special}</li>
             </ul>
             <Button onClick={() => gameStore.calculatePlayerStat()}>
               Попробовать еще раз

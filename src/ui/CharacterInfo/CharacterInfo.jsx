@@ -10,15 +10,15 @@ const CharacterInfo = inject("gameStore")(
       <>
         <div className="player-stat">
           <ul>
-            <li>Ловкость: {gameStore.playerAgility}</li>
-            <li>Сила: {gameStore.playerStrength}</li>
-            <li>Честь: {gameStore.playerHonor}</li>
-            <li>Деньги: {gameStore.playerMoney}</li>
-            <li>Еда: {gameStore.playerFood}</li>
+            <li>Ловкость: {gameStore.player.characteristics.agility}</li>
+            <li>Сила: {gameStore.player.characteristics.strength}</li>
+            <li>Честь: {gameStore.player.characteristics.honor}</li>
+            <li>Деньги: {gameStore.player.characteristics.money}</li>
+            <li>Еда: {gameStore.player.characteristics.food}</li>
           </ul>
         </div>
 
-        {gameStore.playerStrength <= 0 && <Death />}
+        {gameStore.player.characteristics.strength <= 0 && <Death />}
       </>
     );
   })

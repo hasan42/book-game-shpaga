@@ -35,7 +35,11 @@ const GamePage = inject(
         let useFood = false;
         text.effect.forEach((el) => {
           if (el.if) {
-            if (el.if === "food" && gameStore.playerFood > 0 && !useFood) {
+            if (
+              el.if === "food" &&
+              gameStore.player.characteristics.food > 0 &&
+              !useFood
+            ) {
               gameStore.increase("strength", el.strength);
               if (el.food !== undefined) {
                 gameStore.decrease("food", 1);
@@ -46,7 +50,11 @@ const GamePage = inject(
 
               useFood = true;
             }
-            if (el.if === "!food" && gameStore.playerFood <= 0 && !useFood) {
+            if (
+              el.if === "!food" &&
+              gameStore.player.characteristics.food <= 0 &&
+              !useFood
+            ) {
               gameStore.decrease("strength", Math.abs(el.strength));
               useFood = true;
             }
@@ -90,17 +98,19 @@ const GamePage = inject(
         return !luckStep ? "game-steps_inactive" : "game-steps_active";
       }
       if (ifStep === "swimming") {
-        return gameStore.playerSpecial === "swimming"
+        return gameStore.player.characteristics.special === "swimming"
           ? "game-steps_active"
           : "game-steps_inactive";
       }
       if (ifStep === "!swimming") {
-        return gameStore.playerSpecial === "swimming"
+        return gameStore.player.characteristics.special === "swimming"
           ? "game-steps_inactive"
           : "game-steps_active";
       }
       return "game-steps_active";
     };
+
+    console.log("rerender gamepage");
 
     return text ? (
       <div>
@@ -110,9 +120,12 @@ const GamePage = inject(
         <div className="admin-panel">
           {adminStore.isAdmin && (
             <>
+              <div>{gameStore.playerPistol}</div>
               <div>
-                {gameStore.playerStrength}/{gameStore.playerStrengthMax}{" "}
-                {gameStore.playerAgilityMax} {gameStore.fightRound}
+                {gameStore.player.characteristics.strength}/
+                {gameStore.player.characteristics.strengthMax}{" "}
+                {gameStore.player.characteristics.ailityMax}{" "}
+                {gameStore.fightRound}
               </div>
               <div>
                 <button onClick={() => gameStore.decrease("strength", 2)}>

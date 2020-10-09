@@ -17,6 +17,29 @@ class GameStore {
   @observable strengthStatList = []; // список дя генерации значения силы персонажа
   @observable agilityStatList = []; // список дя генерации значения ловкости персонажа
 
+  @observable player = {
+    characteristics: {
+      agility: 0,
+      agilityMax: 0,
+      strength: 0,
+      strengthMax: 0,
+      special: null,
+      honor: 0,
+      god: false,
+      money: 0,
+      food: 2,
+      inventoryMax: 5,
+    },
+    inventory: {
+      horse: 0,
+      sword: 0,
+      dagger: 0,
+      pistol: 0,
+      rifle: 0,
+      ammo: 0,
+    },
+  };
+
   @observable playerAgilityMax = 0; // максимальная ловкость
   @observable playerStrengthMax = 0; // максимальная сила
   @observable playerAgility = 0; // текущая ловкость
@@ -76,12 +99,18 @@ class GameStore {
   // расчет характеристик игрока
   @action calculatePlayerStat() {
     let strengthDice = this.turnDice();
-    this.playerStrengthMax = this.strengthStatList[strengthDice - 1];
-    this.playerStrength = this.strengthStatList[strengthDice - 1];
+    this.player.characteristics.strengthMax = this.strengthStatList[
+      strengthDice - 1
+    ];
+    this.player.characteristics.strength = this.strengthStatList[
+      strengthDice - 1
+    ];
 
     let agilityDice = this.turnDice();
-    this.playerAgilityMax = this.agilityStatList[agilityDice - 1];
-    this.playerAgility = this.agilityStatList[agilityDice - 1];
+    this.player.characteristics.agilityMax = this.agilityStatList[
+      agilityDice - 1
+    ];
+    this.player.characteristics.agility = this.agilityStatList[agilityDice - 1];
   }
 
   @action setSpecial(spec) {
@@ -101,7 +130,7 @@ class GameStore {
 
   // расчет урона - равно = парирование, больше - урон врагу, меньше - урон игроку
   @action calculateFightHit(enemyAg) {
-    const playerHit = this.turnDice() * 2 + this.playerAgility;
+    const playerHit = this.turnDice() * 2 + this.player.characteristics.agility;
     const enemyHit = this.turnDice() * 2 + enemyAg;
     return playerHit === enemyHit ? 0 : playerHit > enemyHit ? 2 : -2;
   }
@@ -109,18 +138,19 @@ class GameStore {
   // создание новой игры
   @action createNewGame() {
     this.calculatePlayerStat(); // проставляем статы
-    this.playerSpecial = null; // абилка
-    this.playerHonor = 3; // честь
-    this.playerGod = true; // обращение к богу
-    this.playerMoney = 15; // деньги
-    this.playerFood = 2; // еда
+
+    this.player.characteristics.special = null; // абилка
+    this.player.characteristics.honor = 3; // честь
+    this.player.characteristics.god = true; // обращение к богу
+    this.player.characteristics.money = 15; // деньги
+    this.player.characteristics.food = 2; // еда
+    this.player.inventory.horse = 1; // лошадь
+    this.player.inventory.sword = 1; // меч
+    this.player.inventory.dagger = 1; // кинжавл
+    this.player.inventory.pistol = 1; // пистолет
+    this.player.inventory.rifle = 0; // аркебуза
+    this.player.inventory.ammo = 0; // патроны
     this.playerInventory = []; // инвентарь игрока
-    this.playerHorse = 1; // лошадь
-    this.playerSword = 1; // меч
-    this.playerDagger = 0; // кинжавл игрока
-    this.playerPistol = 1; // пистолет
-    this.playerRifle = 0; // аркебуза
-    this.playerAmmo = 0; // патроны игрока
 
     this.removeSavedGames(); // удаляем сохранение
   }
@@ -158,31 +188,50 @@ class GameStore {
   }
   // увеличение параметра на заданную величину
   @action increase(stat, count) {
+    console.log("increase");
     if (stat === "strength" && count === "full") {
-      this.playerStrength = this.playerStrengthMax;
+      this.player.characteristics.strength = this.player.characteristics.strengthMax;
     } else {
-      this[`player${this.strCapitalize(stat)}`] =
-        this[`player${this.strCapitalize(stat)}`] + count;
+      const charOrInv = this.checkCharOrInv(stat);
+      this.player[charOrInv][stat] = this.player[charOrInv][stat] + count;
     }
   }
   // уменьшение параметра на заданную величину
   @action decrease(stat, count) {
-    this[`player${this.strCapitalize(stat)}`] =
-      this[`player${this.strCapitalize(stat)}`] - count;
+    console.log("decrease");
+    const charOrInv = this.checkCharOrInv(stat);
+    this.player[charOrInv][stat] = this.player[charOrInv][stat] - count;
+  }
+
+  @action checkCharOrInv(stat) {
+    if (stat in this.player.characteristics) {
+      return "characteristics";
+    } else {
+      return "inventory";
+    }
   }
 
   // проверка объема инвентаря
   @action checkInventory() {
-    const sword = this.playerSword - 1 >= 0 ? this.playerSword - 1 : 0;
-    const dagger = this.playerDagger - 1 >= 0 ? this.playerDagger - 1 : 0;
-    const pistol = this.playerPistol - 2 >= 0 ? this.playerPistol - 2 : 0;
+    const sword =
+      this.player.inventory.sword - 1 >= 0
+        ? this.player.inventory.sword - 1
+        : 0;
+    const dagger =
+      this.player.inventory.dagger - 1 >= 0
+        ? this.player.inventory.dagger - 1
+        : 0;
+    const pistol =
+      this.player.inventory.pistol - 2 >= 0
+        ? this.player.inventory.pistol - 2
+        : 0;
 
     return sword +
       dagger +
       pistol +
       this.playerInventory.length +
-      this.playerRifle >=
-      this.playerInventoryMax
+      this.player.inventory.rifle >=
+      this.player.characteristics.inventoryMax
       ? true
       : false;
   }
@@ -211,8 +260,8 @@ class GameStore {
           if (enemyHit.hit === "attack") {
             // атака
             if (
-              this.playerSpecial === "swordAndDagger" &&
-              this.playerDagger > 0 &&
+              this.player.characteristics.special === "swordAndDagger" &&
+              this.player.inventory.dagger > 0 &&
               enemyHit.isEven
             ) {
               // если четное и умение - шпага+кинжал - отнимаем 3
@@ -225,8 +274,8 @@ class GameStore {
             // проиграл
             this.decrease("strength", 2);
             if (
-              this.playerSpecial === "swordAndDagger" &&
-              this.playerDagger > 0 &&
+              this.player.characteristics.special === "swordAndDagger" &&
+              this.player.inventory.dagger > 0 &&
               enemyHit.isEven
             ) {
               console.log("проиграл playerSpecial");
@@ -251,7 +300,7 @@ class GameStore {
   @action calculateHit(agility) {
     const enemyHit = this.turnDice() * 2 + agility; // сила удара врага
     const playerDice = this.turnDice(); // кубик игрока
-    const playerHit = playerDice * 2 + this.playerAgility; // сила удара игрока
+    const playerHit = playerDice * 2 + this.player.characteristics.agility; // сила удара игрока
     const isEven = playerDice % 2 === 0 ? true : false; // проверка на четность
 
     if (playerHit === enemyHit) {

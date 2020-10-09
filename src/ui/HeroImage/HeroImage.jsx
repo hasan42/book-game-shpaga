@@ -12,8 +12,8 @@ const HeroImage = inject("gameStore")(
       <div className="hero">
         <HealthBar
           health={{
-            current: gameStore.playerStrength,
-            full: gameStore.playerStrengthMax,
+            current: gameStore.player.characteristics.strength,
+            full: gameStore.player.characteristics.strengthMax,
           }}
         />
         <div

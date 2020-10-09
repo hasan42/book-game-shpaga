@@ -7,8 +7,10 @@ import HeroImage from "../HeroImage/HeroImage";
 import EnemyImage from "../EnemyImage/EnemyImage";
 
 const Fight = inject("gameStore")(
-  observer(({ GameStore, fight, onFightEnd }) => {
+  observer(({ fight, onFightEnd }) => {
     let enemyFight = fight.enemy;
+
+    console.log("rerender Fight", enemyFight);
 
     enemyFight.forEach((el) => {
       if (!el.maxStrength) el.maxStrength = el.strength;
