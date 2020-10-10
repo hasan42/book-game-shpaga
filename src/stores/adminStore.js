@@ -1,5 +1,5 @@
 import notifyStore from "./notifyStore";
-import { observable, autorun, action, decorate } from "mobx";
+import { observable, autorun, action } from "mobx";
 
 class AdminStore {
   @observable isAdmin = false;

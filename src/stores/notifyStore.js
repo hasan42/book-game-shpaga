@@ -1,4 +1,4 @@
-import { observable, autorun, action, decorate } from "mobx";
+import { observable, autorun, action } from "mobx";
 
 class NotifyStore {
   @observable message = "";

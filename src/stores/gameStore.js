@@ -1,4 +1,4 @@
-import { observable, computed, autorun, action, decorate } from "mobx";
+import { observable, computed, autorun, action } from "mobx";
 import axios from "axios";
 
 class GameStore {
@@ -114,7 +114,7 @@ class GameStore {
   }
 
   @action setSpecial(spec) {
-    this.playerSpecial = spec;
+    this.player.characteristics.special = spec;
   }
 
   // делает заглавной первую букву слова
@@ -243,7 +243,6 @@ class GameStore {
     this.fightRound += 1; // прибавляем номер раунда
 
     let resultFight = 0; // результат схватки
-    // console.log(enemyList);
     enemyList.forEach((en, idx) => {
       const enemyHit = this.calculateHit(en.agility); // расчет силы удара
 
