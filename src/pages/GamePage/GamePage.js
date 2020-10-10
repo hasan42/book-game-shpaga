@@ -110,8 +110,6 @@ const GamePage = inject(
       return "game-steps_active";
     };
 
-    console.log("rerender gamepage");
-
     return text ? (
       <div>
         <div>

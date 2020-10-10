@@ -180,6 +180,8 @@ class GameStore {
         return "кинжал";
       case "pistol":
         return "пистолет";
+      case "rifle":
+        return "аркебуза";
       case "ammo":
         return "патроны";
       default:
@@ -188,7 +190,6 @@ class GameStore {
   }
   // увеличение параметра на заданную величину
   @action increase(stat, count) {
-    console.log("increase");
     if (stat === "strength" && count === "full") {
       this.player.characteristics.strength = this.player.characteristics.strengthMax;
     } else {
@@ -198,7 +199,6 @@ class GameStore {
   }
   // уменьшение параметра на заданную величину
   @action decrease(stat, count) {
-    console.log("decrease");
     const charOrInv = this.checkCharOrInv(stat);
     this.player[charOrInv][stat] = this.player[charOrInv][stat] - count;
   }

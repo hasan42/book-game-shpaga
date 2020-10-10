@@ -9,10 +9,16 @@ import "./Store.css";
 @observer
 class Store extends Component {
   initStore = {};
+  initStoreStep = null;
 
   constructor(props) {
     super(props);
 
+    if( this.initStoreStep !== gameStore.currentStep) this.setInitStore();
+  }
+
+  setInitStore() {
+    this.initStoreStep = gameStore.currentStep;
     this.props.store.forEach((element) => {
       this.initStore[element.item] = gameStore.player.inventory[element.item];
     });
@@ -34,44 +40,48 @@ class Store extends Component {
   };
 
   render() {
-    return (<div className="store">
-    {this.props.store.map((storeItem, idx) => (
-      <div className="store-item" key={idx}>
-        <div className="store-item__name">
-          {gameStore.getParamName(storeItem.item)}
-        </div>
-        <div className="store-item__count">
-          <button
-            onClick={() => {
-              gameStore.decrease(storeItem.item, 1);
-              gameStore.increase("money", storeItem.price);
-            }}
-            disabled={
-              this.checkByTypeInBuy(storeItem.item) ||
-              gameStore.player.inventory[storeItem.item] <= 0
-            }
-          >
-            -
-          </button>
-          <span>{gameStore.player.inventory[storeItem.item]}</span>
-          <button
-            onClick={() => {
-              gameStore.increase(storeItem.item, 1);
-              gameStore.decrease("money", storeItem.price);
-            }}
-            disabled={
-              this.checkByTypeInSell(storeItem.item) ||
-              gameStore.player.inventory["money"] < storeItem.price ||
-              gameStore.checkInventory()
-            }
-          >
-            +
-          </button>
-        </div>
-        <div className="store-item__price">{storeItem.price}</div>
+    if( this.initStoreStep !== gameStore.currentStep) this.setInitStore();
+
+    return (
+      <div className="store">
+        {this.props.store.map((storeItem, idx) => (
+          <div className="store-item" key={idx}>
+            <div className="store-item__name">
+              {gameStore.getParamName(storeItem.item)}
+            </div>
+            <div className="store-item__count">
+              <button
+                onClick={() => {
+                  gameStore.decrease(storeItem.item, 1);
+                  gameStore.increase("money", storeItem.price);
+                }}
+                disabled={
+                  this.checkByTypeInBuy(storeItem.item) ||
+                  gameStore.player.inventory[storeItem.item] <= 0
+                }
+              >
+                -
+              </button>
+              <span>{gameStore.player.inventory[storeItem.item]}</span>
+              <button
+                onClick={() => {
+                  gameStore.increase(storeItem.item, 1);
+                  gameStore.decrease("money", storeItem.price);
+                }}
+                disabled={
+                  this.checkByTypeInSell(storeItem.item) ||
+                  gameStore.player.characteristics.money < storeItem.price ||
+                  gameStore.checkInventory()
+                }
+              >
+                +
+              </button>
+            </div>
+            <div className="store-item__price">{storeItem.price}</div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>)
+    )
   }
 }
 
