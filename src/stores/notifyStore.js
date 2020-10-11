@@ -1,6 +1,7 @@
 import { observable, autorun, action } from "mobx";
 
 class NotifyStore {
+  @observable messageArray = [];
   @observable message = "";
   @observable isVisible = false;
 
@@ -12,6 +13,22 @@ class NotifyStore {
   }
   @action hide() {
     this.isVisible = false;
+  }
+
+  @action addArrMsgItem(newMsg){
+    this.messageArray.push({
+      id: this.generateId(),
+      msg: newMsg,
+      timer: 3000,
+    });
+  }
+  @action removeArrMsgItem(id){
+    let findMsg = this.messageArray.findIndex((el)=>el.id === id);
+    this.messageArray.splice(findMsg, 1);
+  }
+
+  generateId(){
+    return Math.round((Math.random() * 36 ** 12)).toString(36);
   }
 }
 

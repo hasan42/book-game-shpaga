@@ -1,0 +1,11 @@
+.notify-list {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column-reverse;
+
+  .notify-item {
+    margin: 10px 0;
+  }
+}

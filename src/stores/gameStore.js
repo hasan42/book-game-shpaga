@@ -1,3 +1,4 @@
+import notifyStore from "./notifyStore";
 import { observable, computed, autorun, action } from "mobx";
 import axios from "axios";
 
@@ -201,6 +202,7 @@ class GameStore {
   @action decrease(stat, count) {
     const charOrInv = this.checkCharOrInv(stat);
     this.player[charOrInv][stat] = this.player[charOrInv][stat] - count;
+    notifyStore.addArrMsgItem(`Параметр ${stat} уменьшился на ${count}`)
   }
 
   @action checkCharOrInv(stat) {
