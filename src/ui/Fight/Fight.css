@@ -31,7 +31,8 @@
   cursor: url("sworda.png"), auto;
 }
 
-.fight__button_secret-sword {
+.fight__button_secret-sword,
+.fight__button_pistol-shoot {
   position: relative;
   width: 100%;
   z-index: 1;

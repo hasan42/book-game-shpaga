@@ -16,23 +16,22 @@ const Fight = inject("gameStore")(
 
     const [disabledEnemyStrength, setDisabledEnemyStrength] = useState(0);
     const [secretSwordHit, setSecretSwordHit] = useState(true);
+    const [pistolShoot, setPistolShoot] = useState(false);
 
     const fightHasWinCondition = () => {
       return fight.win && fight.win !== "kill" ? false : true;
     };
 
-    const makeHit = useCallback((id,dmg)=>{
-      enemyFight[id].strength =
-        enemyFight[id].strength - dmg;
+    const makeHit = useCallback((id, dmg) => {
+      enemyFight[id].strength = enemyFight[id].strength - dmg;
 
       if (
-        enemyFight.filter(
-          (en) => en.strength <= disabledEnemyStrength
-        ).length === enemyFight.length
+        enemyFight.filter((en) => en.strength <= disabledEnemyStrength)
+          .length === enemyFight.length
       ) {
         onFightEnd();
       }
-    },[]);
+    }, []);
 
     useEffect(() => {
       if (fightHasWinCondition) {
@@ -60,15 +59,36 @@ const Fight = inject("gameStore")(
                   }}
                 />
 
-                {
-                  gameStore.player.characteristics.special === "secretSword" && 
-                    <button 
-                      disabled={!secretSwordHit}
-                      className="fight__button_secret-sword" onClick={()=>{
+                {gameStore.player.characteristics.special === "secretSword" && (
+                  <button
+                    disabled={!secretSwordHit}
+                    className="fight__button_secret-sword"
+                    onClick={() => {
+                      makeHit(idx, 4);
+                      setSecretSwordHit(false);
+                    }}
+                  >
+                    Тайный удар шпагой
+                  </button>
+                )}
+
+                {gameStore.player.inventory.pistol > 0 &&
+                gameStore.player.inventory.ammo > 0 ? (
+                  <button
+                    disabled={pistolShoot}
+                    className="fight__button_pistol-shoot"
+                    onClick={() => {
+                      if (gameStore.checkYouLuck()) {
+                        makeHit(idx, enemyC.maxStrength);
+                      } else {
                         makeHit(idx, 4);
-                        setSecretSwordHit(false)
-                      }}>Тайный удар шпагой</button>
-                }
+                      }
+                      setPistolShoot(true);
+                    }}
+                  >
+                    Выстрелить
+                  </button>
+                ) : null}
 
                 <button
                   className="fight__button"

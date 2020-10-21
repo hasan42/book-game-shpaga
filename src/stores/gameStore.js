@@ -150,7 +150,7 @@ class GameStore {
     this.player.inventory.dagger = 1; // кинжавл
     this.player.inventory.pistol = 1; // пистолет
     this.player.inventory.rifle = 0; // аркебуза
-    this.player.inventory.ammo = 0; // патроны
+    this.player.inventory.ammo = 2; // патроны
     this.playerInventory = []; // инвентарь игрока
 
     this.removeSavedGames(); // удаляем сохранение
@@ -193,16 +193,26 @@ class GameStore {
   @action increase(stat, count) {
     if (stat === "strength" && count === "full") {
       this.player.characteristics.strength = this.player.characteristics.strengthMax;
+      notifyStore.addArrMsgItem(
+        `Параметр ${this.getParamName(stat)} увеличился до ${
+          this.player.characteristics.strengthMax
+        }`
+      );
     } else {
       const charOrInv = this.checkCharOrInv(stat);
       this.player[charOrInv][stat] = this.player[charOrInv][stat] + count;
+      notifyStore.addArrMsgItem(
+        `Параметр ${this.getParamName(stat)} увеличился до на ${count}`
+      );
     }
   }
   // уменьшение параметра на заданную величину
   @action decrease(stat, count) {
     const charOrInv = this.checkCharOrInv(stat);
     this.player[charOrInv][stat] = this.player[charOrInv][stat] - count;
-    notifyStore.addArrMsgItem(`Параметр ${stat} уменьшился на ${count}`)
+    notifyStore.addArrMsgItem(
+      `Параметр ${this.getParamName(stat)} уменьшился на ${count}`
+    );
   }
 
   @action checkCharOrInv(stat) {
@@ -255,6 +265,7 @@ class GameStore {
           if (enemyHit.hit === "damaged") {
             // враг попал - отнять 2е силы игрока
             this.decrease("strength", 2);
+            notifyStore.addArrMsgItem(`Враг ${en.name} Попал по вам!`);
           }
         } else {
           // цель атаки
@@ -268,12 +279,17 @@ class GameStore {
               // если четное и умение - шпага+кинжал - отнимаем 3
               console.log("атака playerSpecial");
               resultFight = 3;
+              notifyStore.addArrMsgItem(
+                `Вы попали по врагу ${en.name} своим умением!`
+              );
             } else {
               resultFight = 2;
+              notifyStore.addArrMsgItem(`Вы попали по врагу ${en.name}!`);
             }
           } else if (enemyHit.hit === "damaged") {
             // проиграл
             this.decrease("strength", 2);
+            notifyStore.addArrMsgItem(`Враг ${en.name} Попал по вам!`);
             if (
               this.player.characteristics.special === "swordAndDagger" &&
               this.player.inventory.dagger > 0 &&
@@ -282,12 +298,16 @@ class GameStore {
               console.log("проиграл playerSpecial");
               // если четное и умение - шпага+кинжал - отнимаем 2
               resultFight = 2;
+              notifyStore.addArrMsgItem(
+                `Вы попали по врагу ${en.name} своим умением!`
+              );
             } else {
               resultFight = 0;
             }
           } else {
             //парирование
             resultFight = 0;
+            notifyStore.addArrMsgItem(`Вы парировали атаку!`);
           }
         }
       }
