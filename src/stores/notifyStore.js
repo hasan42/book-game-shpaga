@@ -15,20 +15,20 @@ class NotifyStore {
     this.isVisible = false;
   }
 
-  @action addArrMsgItem(newMsg){
+  @action addArrMsgItem(newMsg) {
     this.messageArray.push({
       id: this.generateId(),
       msg: newMsg,
-      timer: 3000,
+      timer: 5000,
     });
   }
-  @action removeArrMsgItem(id){
-    let findMsg = this.messageArray.findIndex((el)=>el.id === id);
+  @action removeArrMsgItem(id) {
+    let findMsg = this.messageArray.findIndex((el) => el.id === id);
     this.messageArray.splice(findMsg, 1);
   }
 
-  generateId(){
-    return Math.round((Math.random() * 36 ** 12)).toString(36);
+  generateId() {
+    return Math.round(Math.random() * 36 ** 12).toString(36);
   }
 }
 

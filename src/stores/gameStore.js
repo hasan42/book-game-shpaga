@@ -150,7 +150,7 @@ class GameStore {
     this.player.inventory.dagger = 1; // кинжавл
     this.player.inventory.pistol = 1; // пистолет
     this.player.inventory.rifle = 0; // аркебуза
-    this.player.inventory.ammo = 2; // патроны
+    this.player.inventory.ammo = 0; // патроны
     this.playerInventory = []; // инвентарь игрока
 
     this.removeSavedGames(); // удаляем сохранение

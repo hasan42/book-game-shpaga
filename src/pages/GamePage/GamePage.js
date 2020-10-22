@@ -4,6 +4,7 @@ import { observer, inject } from "mobx-react";
 import { keysIn, valuesIn } from "lodash";
 import gameStore from "@stores/gameStore";
 import adminStore from "@stores/adminStore";
+import notifyStore from "@stores/notifyStore";
 import CharacterInfo from "@ui/CharacterInfo/CharacterInfo";
 import Store from "@ui/Store/Store";
 import Fight from "@ui/Fight/Fight";
@@ -131,7 +132,13 @@ const GamePage = inject(
                 </button>
               </div>
               <div>
-                <button onClick={() => adminStore.showText()}>showText</button>
+                <button
+                  onClick={() =>
+                    notifyStore.addArrMsgItem("showTextshowTextshowText")
+                  }
+                >
+                  showText
+                </button>
               </div>
             </>
           )}
