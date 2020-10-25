@@ -5,10 +5,10 @@ import "./NotifyItem.scss";
 
 const NotifyItem = inject("notifyStore")(
   observer(({ NotifyStore, id, msg, timer }) => {
-    useEffect(()=>{
-      setTimeout(()=>{
+    useEffect(() => {
+      setTimeout(() => {
         notifyStore.removeArrMsgItem(id);
-      },timer)
+      }, timer);
     });
 
     return <div className="notify-item">{msg}</div>;

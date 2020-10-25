@@ -28,7 +28,7 @@
   bottom: 0;
   background-color: transparent;
   border: 0;
-  cursor: url("sworda.png"), auto;
+  cursor: pointer;
 }
 
 .fight__button_secret-sword,

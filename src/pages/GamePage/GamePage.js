@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { observer, inject } from "mobx-react";
 import { keysIn, valuesIn } from "lodash";
@@ -9,6 +9,7 @@ import CharacterInfo from "@ui/CharacterInfo/CharacterInfo";
 import Store from "@ui/Store/Store";
 import Fight from "@ui/Fight/Fight";
 import Background from "@ui/Background/Background";
+import StepItem from "@ui/StepItem/StepItem";
 import "./GamePage.scss";
 
 const GamePage = inject(
@@ -86,29 +87,38 @@ const GamePage = inject(
       setDisabledSteps(false);
     };
 
-    const onClickStepToHandle = (to, title) => {
-      setGameTitle(title);
-      history.push(`/game/${to}`);
-    };
+    // const onClickStepToHandle = (to, title) => {
+    //   setGameTitle(title);
+    //   history.push(`/game/${to}`);
+    // };
+
+    const onClickStepToHandle = useCallback(
+      (to, title) => {
+        setGameTitle(title);
+        history.push(`/game/${to}`);
+      },
+      [history]
+    );
+    const onClickStartHandle = useCallback(() => history.push("/"), [history]);
 
     const setDisabledStepByIf = (ifStep) => {
       if (ifStep === "luck") {
-        return luckStep ? "game-steps_inactive" : "game-steps_active";
+        return luckStep ? true : false;
       }
       if (ifStep === "!luck") {
-        return !luckStep ? "game-steps_inactive" : "game-steps_active";
+        return !luckStep ? true : false;
       }
       if (ifStep === "swimming") {
         return gameStore.player.characteristics.special === "swimming"
-          ? "game-steps_active"
-          : "game-steps_inactive";
+          ? false
+          : true;
       }
       if (ifStep === "!swimming") {
         return gameStore.player.characteristics.special === "swimming"
-          ? "game-steps_inactive"
-          : "game-steps_active";
+          ? true
+          : false;
       }
-      return "game-steps_active";
+      return false;
     };
 
     return text ? (
@@ -171,42 +181,44 @@ const GamePage = inject(
               {text.step.map((step, idx) => {
                 if (step.if) {
                   return (
-                    <li
+                    <StepItem
                       key={step.to}
-                      className={setDisabledStepByIf(step.if)}
+                      disabled={setDisabledStepByIf(step.if)}
                       onClick={() => onClickStepToHandle(step.to, step.text)}
                     >
                       {step.text}
-                    </li>
+                    </StepItem>
                   );
                 } else if (step.type === "gameOver") {
                   return (
                     <>
-                      <li key={`gameOver${idx}`}>
-                        <Link to={"/"}>{step.text}</Link>
-                      </li>
+                      <StepItem
+                        key={`gameOver${idx}`}
+                        onClick={() => onClickStartHandle()}
+                      >
+                        {step.text}
+                      </StepItem>
                       {gameStore.canLoadSaveGame && (
-                        <li key={`gameOverLoad${idx}`}>
-                          <button
-                            onClick={() => {
-                              gameStore.loadGame();
-                              history.push(`/game/${gameStore.currentStep}`);
-                            }}
-                          >
-                            Загрузить игру
-                          </button>
-                        </li>
+                        <StepItem
+                          key={`gameOverLoad${idx}`}
+                          onClick={() => {
+                            gameStore.loadGame();
+                            history.push(`/game/${gameStore.currentStep}`);
+                          }}
+                        >
+                          Загрузить игру
+                        </StepItem>
                       )}
                     </>
                   );
                 } else {
                   return (
-                    <li
+                    <StepItem
                       key={step.to}
                       onClick={() => onClickStepToHandle(step.to, step.text)}
                     >
                       {step.text}
-                    </li>
+                    </StepItem>
                   );
                 }
               })}

@@ -1,0 +1,8 @@
+.step-item {
+  padding: 5px 7px;
+  border: 1px solid #aeaeae;
+}
+.step-item_disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
