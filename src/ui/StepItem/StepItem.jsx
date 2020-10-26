@@ -4,10 +4,11 @@ import "./StepItem.scss";
 const StepItem = ({ disabled, onClick, children }) => {
   return (
     <div
-      className={"step-item" + (disabled ? "step-item" : "")}
+      className={"step-item" + (disabled ? " step-item_disabled" : "")}
       onClick={onClick}
     >
-      {children}
+      <div className="step-item__indeicator"></div>
+      <div className="step-item__label">{children}</div>
     </div>
   );
 };
