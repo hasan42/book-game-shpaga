@@ -13,5 +13,5 @@
 
 ## Команды npm
 
-`npm start` - старт проекта;  
-`npm deploy` - загрузка в GitHUB Pages;
+`npm run start` - старт проекта;  
+`npm run deploy` - загрузка в GitHUB Pages;
