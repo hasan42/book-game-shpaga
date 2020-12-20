@@ -295,6 +295,7 @@ module.exports = function (webpackEnv) {
         "@stores": path.join(__dirname, "../src/stores/"),
         "@hooks": path.join(__dirname, "../src/hooks/"),
         "@ui": path.join(__dirname, "../src/ui/"),
+        "@helpers": path.join(__dirname, "../src/helpers/"),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",

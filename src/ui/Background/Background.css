@@ -11,7 +11,12 @@
   right: 0;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 1;
+  border: 3px red;
+}
+.background__image_old {
   z-index: 0;
+  border: 3px blue;
 }
 .background__content {
   position: relative;
