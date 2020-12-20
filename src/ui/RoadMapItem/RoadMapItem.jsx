@@ -7,7 +7,9 @@ const RoadMapItem = ({ itemId }) => {
 
   return gameStore.checkRoadMap(itemId) ? (
     <div className="road-map-item">
-      <div className="road-map-id">{item.id}</div>
+      <div className="road-map-id">
+        {item.id} - {item.step.length}
+      </div>
       {/* <div>{item.text}</div> */}
       <RoadMapList items={item.step} />
     </div>

@@ -77,6 +77,14 @@ class GameStore {
     return this.listSteps.find((step) => step.id === Number(this.currentStep));
   }
 
+  @computed get maxCountStep() {
+    let maxStep = 0;
+    this.listSteps.forEach((item) => {
+      maxStep = item.step.length > maxStep ? item.step.length : maxStep;
+    });
+    return maxStep;
+  }
+
   // получение шага по ИД
   @action getStepById(id) {
     return this.listSteps[Number(id) - 1];

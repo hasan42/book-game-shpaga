@@ -150,6 +150,7 @@ const GamePage = inject(
                   showText
                 </button>
               </div>
+              <div>maxCountStep - {gameStore.maxCountStep}</div>
             </>
           )}
         </div>
